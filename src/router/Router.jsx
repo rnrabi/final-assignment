@@ -8,6 +8,7 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
+        errorElement:<h2>TODO: error page is being created</h2>,
         children: [
             {
                 path: '/',
