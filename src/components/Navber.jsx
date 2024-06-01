@@ -25,8 +25,12 @@ const Navber = () => {
                     <ul className="menu menu-horizontal px-1">
 
                         <li><NavLink to='/' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Home</NavLink></li>
+
                         <li><NavLink to='/shop' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Shop</NavLink></li>
+
                         <li><NavLink to='/myCart' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>cart icon</NavLink></li>
+
+                        <li><NavLink to='/register' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Sign Up</NavLink></li>
 
                         <li>
                             <details>
