@@ -4,7 +4,6 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
-import { FaCartPlus } from "react-icons/fa";
 
 
 const Shop = () => {

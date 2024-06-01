@@ -1,9 +1,30 @@
 import { FaCartPlus } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import useMyCarts from "../hooks/useMyCarts";
+import useAuth from "../hooks/useAuth";
+import Swal from "sweetalert2";
 // import logo from "../assets/logo.jpg"
 
 
 const Navber = () => {
+    const [myCarts] = useMyCarts()
+    const { user, logOut } = useAuth()
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Success fully log out",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+            .catch(err => console.log(err))
+    }
+
+
+
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -15,7 +36,7 @@ const Navber = () => {
                         <ul tabIndex={0} className="menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li><NavLink to='/' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Home</NavLink></li>
                             <li><NavLink to='/shop' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Shop</NavLink></li>
-                            <li><NavLink to='/myCart' className={({ isActive }) => isActive ? 'font-bold underline' : ''}><FaCartPlus /></NavLink></li>
+                            <li><NavLink to='/myCart' className={({ isActive }) => isActive ? 'font-bold underline' : ''}><FaCartPlus />{myCarts.length}</NavLink></li>
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost text-xl">
@@ -29,7 +50,7 @@ const Navber = () => {
 
                         <li><NavLink to='/shop' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Shop</NavLink></li>
 
-                        <li><NavLink to='/myCart' className={({ isActive }) => isActive ? 'font-bold underline' : ''}><FaCartPlus /></NavLink></li>
+                        <li><NavLink to='/myCart' className={({ isActive }) => isActive ? 'font-bold underline' : ''}><FaCartPlus />{myCarts.length}</NavLink></li>
 
                         <li><NavLink to='/register' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Sign Up</NavLink></li>
 
@@ -45,24 +66,27 @@ const Navber = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/login' className="btn">Join Us</Link>
-
-                    <div className="">
-                        <div className="flex-none">
-                            <div className="dropdown dropdown-end">
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-10 rounded-full">
-                                        <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                    {
+                        user ? <div className="">
+                            <div className="flex-none">
+                                <div className="dropdown dropdown-end">
+                                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                        <div className="w-10 rounded-full">
+                                            <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                                        </div>
                                     </div>
+                                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                        <li> <a>Update Profile</a></li>
+                                        <li><a>Dashboard</a></li>
+                                        <li><button onClick={handleLogOut}>Logout</button></li>
+                                    </ul>
                                 </div>
-                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                    <li> <a>Update Profile</a></li>
-                                    <li><a>Dashboard</a></li>
-                                    <li><a>Logout</a></li>
-                                </ul>
                             </div>
                         </div>
-                    </div>
+
+                            : <Link to='/login' className="btn">Join Us</Link>
+                    }
+
                 </div>
             </div>
         </div>

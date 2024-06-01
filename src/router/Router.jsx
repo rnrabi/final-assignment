@@ -6,7 +6,7 @@ import Home from "../pages/home/Home";
 import Login from "../pages/login/Login";
 import SignUp from "../pages/signUp/SignUp";
 import Shop from "../pages/shop/Shop";
-import ShopDetails from "../pages/shopDetails/ShopDetails";
+import MyCarts from "../pages/myCarts/MyCarts";
 
 export const router = createBrowserRouter([
     {
@@ -31,9 +31,8 @@ export const router = createBrowserRouter([
                 element:<Shop></Shop>
             },
             {
-                path:'/shop/:id',
-                element:<ShopDetails></ShopDetails>,
-                loader:({params})=>fetch(`http://localhost:5000/allMedicine/${params.id}`)
+                path:'/myCart',
+                element:<MyCarts></MyCarts>
             }
         ]
     },
