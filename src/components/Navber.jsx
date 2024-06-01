@@ -1,3 +1,4 @@
+import { FaCartPlus } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
 // import logo from "../assets/logo.jpg"
 
@@ -14,7 +15,7 @@ const Navber = () => {
                         <ul tabIndex={0} className="menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
                             <li><NavLink to='/' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Home</NavLink></li>
                             <li><NavLink to='/shop' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Shop</NavLink></li>
-                            <li><NavLink to='/myCart' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>cart icon</NavLink></li>
+                            <li><NavLink to='/myCart' className={({ isActive }) => isActive ? 'font-bold underline' : ''}><FaCartPlus /></NavLink></li>
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost text-xl">
@@ -28,7 +29,7 @@ const Navber = () => {
 
                         <li><NavLink to='/shop' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Shop</NavLink></li>
 
-                        <li><NavLink to='/myCart' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>cart icon</NavLink></li>
+                        <li><NavLink to='/myCart' className={({ isActive }) => isActive ? 'font-bold underline' : ''}><FaCartPlus /></NavLink></li>
 
                         <li><NavLink to='/register' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Sign Up</NavLink></li>
 
