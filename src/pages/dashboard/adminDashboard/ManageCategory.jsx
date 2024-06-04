@@ -2,6 +2,7 @@ import useAllMedicine from "../../../hooks/useAllMedicine";
 import { AiTwotoneDelete } from "react-icons/ai";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import AddForm from "./AddForm";
 
 
 const ManageCategory = () => {
@@ -29,7 +30,7 @@ const ManageCategory = () => {
         <div>
             <h2 className="text-center text-xl my-10 font-bold">All Category OF Medicine</h2>
             <div className="text-end">
-                <button className="btn btn-outline">Add Category</button>
+                <button className="btn btn-outline" onClick={() => document.getElementById('my_modal_1').showModal()}>Add Category</button>
             </div>
 
             <div className="overflow-x-auto">
@@ -62,6 +63,28 @@ const ManageCategory = () => {
                     </tbody>
                 </table>
             </div>
+
+
+
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+
+
+            <dialog id="my_modal_1" className="modal w-full">
+                <div className="modal-box w-full">
+                    
+                    <AddForm></AddForm>
+
+                    <div className="modal-action">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn">Close</button>
+                        </form>
+                    </div>
+                </div>
+            </dialog>
+
+
+
         </div>
     );
 };
