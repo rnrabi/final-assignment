@@ -45,7 +45,7 @@ const ContextApi = ({ children }) => {
             setLoading(false)
         })
         return () => {
-            unSubscribe()
+           return unSubscribe()
         }
     }, [])
 

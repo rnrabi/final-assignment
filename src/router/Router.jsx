@@ -7,33 +7,50 @@ import Login from "../pages/login/Login";
 import SignUp from "../pages/signUp/SignUp";
 import Shop from "../pages/shop/Shop";
 import MyCarts from "../pages/myCarts/MyCarts";
+import Dashboard from "../pages/dashboard/Dashboard";
+import AdminHome from "../pages/dashboard/adminDashboard/AdminHome";
+import ManageUser from "../pages/dashboard/adminDashboard/ManageUser";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement:<h2>TODO: error page is being created</h2>,
+        errorElement: <h2>TODO: error page is being created</h2>,
         children: [
             {
                 path: '/',
                 element: <Home></Home>
             },
             {
-                path:'/login',
-                element:<Login></Login>
+                path: '/login',
+                element: <Login></Login>
             },
             {
-                path:'/register',
-                element:<SignUp></SignUp>
+                path: '/register',
+                element: <SignUp></SignUp>
             },
             {
-                path:'/shop',
-                element:<Shop></Shop>
+                path: '/shop',
+                element: <Shop></Shop>
             },
             {
-                path:'/myCart',
-                element:<MyCarts></MyCarts>
+                path: '/myCart',
+                element: <MyCarts></MyCarts>
             }
         ]
     },
+    {
+        path: '/dashboard',
+        element: <Dashboard></Dashboard>,
+        children:[
+            {
+                path:'adminHome',
+                element:<AdminHome></AdminHome>
+            },
+            {
+                path:'manageUsers',
+                element:<ManageUser></ManageUser>
+            }
+        ]
+    }
 ]);

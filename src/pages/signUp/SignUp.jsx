@@ -19,17 +19,17 @@ const SignUp = () => {
         const email = data.email;
         const password = data.password;
         const roll = data.roll;
-        const formData = { image: file }
+        // const formData = { image: file }
         console.log(name, email, password, roll, file)
 
-        // hosting image in image bb
-        const res = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imagebb_Api_key}`, formData, {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        })
-        const userURL = res.data.data.display_url;
-        console.log(userURL)
+        // TODO : ********* hosting image in image bb
+        // const res = await axiosPublic.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imagebb_Api_key}`, formData, {
+        //     headers: {
+        //         'content-type': 'multipart/form-data'
+        //     }
+        // })
+        // const userURL = res.data.data.display_url;
+        // console.log(userURL)
 
 
         signUpUser(email, password)
@@ -44,7 +44,7 @@ const SignUp = () => {
                 });
                 updateProfile(result.user, {
                     displayName: name,
-                    photoURL: userURL,
+                    photoURL: 'userURL',
                 })
                     .then(() => { })
                     .catch(err => { console.log(err.message) })
@@ -53,7 +53,7 @@ const SignUp = () => {
                 console.log(err.message)
             })
         // hosting user data in database (mongodb)
-        const userInfo = { name, email, password, roll, userURL }
+        const userInfo = { name, email, password, roll }
         const response = await axiosPublic.post('/users', userInfo)
         console.log(response.data)
     }
