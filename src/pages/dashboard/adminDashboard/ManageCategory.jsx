@@ -1,10 +1,28 @@
 import useAllMedicine from "../../../hooks/useAllMedicine";
 import { AiTwotoneDelete } from "react-icons/ai";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const ManageCategory = () => {
-    const [allMedicine] = useAllMedicine()
+    const [allMedicine, refetch] = useAllMedicine()
     console.log(allMedicine)
+    const axiosSecure = useAxiosSecure()
+
+    const handleDelete = async (deleteId, medicine) => {
+        const { data } = await axiosSecure.delete(`/allMedicine/${deleteId}`)
+        console.log(data)
+        if (data.deletedCount > 0) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `${medicine.category} is deleted`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+            refetch()
+        }
+    }
 
 
     return (
@@ -36,7 +54,7 @@ const ManageCategory = () => {
                                 <td className="flex justify-center gap-9">
                                     <button className="btn">Update</button>
 
-                                    <button className="btn" ><AiTwotoneDelete className="text-xl text-red-600"></AiTwotoneDelete></button>
+                                    <button onClick={() => handleDelete(medicine._id, medicine)} className="btn" ><AiTwotoneDelete className="text-xl text-red-600"></AiTwotoneDelete></button>
                                 </td>
                             </tr>)
                         }

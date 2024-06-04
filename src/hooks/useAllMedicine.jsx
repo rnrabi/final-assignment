@@ -4,14 +4,14 @@ import useAxiosPublic from "./useAxiosPublic";
 
 const useAllMedicine = () => {
     const axiosPublic = useAxiosPublic()
-    const { data: allMedicine = [] } = useQuery({
+    const { data: allMedicine = [] , refetch } = useQuery({
         queryKey: ['allMedicine'],
         queryFn: async () => {
             const res = await axiosPublic.get('/allMedicine')
             return res.data;
         }
     })
-    return [allMedicine]
+    return [allMedicine , refetch]
 
 }
 export default useAllMedicine;
