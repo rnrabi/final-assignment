@@ -10,6 +10,7 @@ import MyCarts from "../pages/myCarts/MyCarts";
 import Dashboard from "../pages/dashboard/Dashboard";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome";
 import ManageUser from "../pages/dashboard/adminDashboard/ManageUser";
+import ManageCategory from "../pages/dashboard/adminDashboard/ManageCategory";
 
 export const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
             {
                 path:'manageUsers',
                 element:<ManageUser></ManageUser>
+            },
+            {
+                path:'manageCategory',
+                element:<ManageCategory></ManageCategory>
             }
         ]
     }

@@ -8,7 +8,8 @@ const useRoll = () => {
     const axiosPublic = useAxiosPublic()
 
     const { data: roll, isLoading } = useQuery({
-        queryKey: ['roll'],
+        queryKey: ['roll', user?.email],
+        enabled: !!user?.email,
         queryFn: async () => {
             const { data } = await axiosPublic.get(`/users/${user?.email}`)
             return data;
