@@ -11,6 +11,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import AdminHome from "../pages/dashboard/adminDashboard/AdminHome";
 import ManageUser from "../pages/dashboard/adminDashboard/ManageUser";
 import ManageCategory from "../pages/dashboard/adminDashboard/ManageCategory";
+import UpDateMangeCatery from "../pages/dashboard/adminDashboard/UpDateMangeCatery";
 
 export const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ export const router = createBrowserRouter([
             {
                 path:'manageCategory',
                 element:<ManageCategory></ManageCategory>
+            },
+            {
+                path:'updateManage/:id',
+                element:<UpDateMangeCatery></UpDateMangeCatery>
             }
         ]
     }

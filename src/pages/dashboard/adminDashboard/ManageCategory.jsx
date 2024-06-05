@@ -3,6 +3,7 @@ import { AiTwotoneDelete } from "react-icons/ai";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import AddForm from "./AddForm";
+import { Link } from "react-router-dom";
 
 
 const ManageCategory = () => {
@@ -53,7 +54,7 @@ const ManageCategory = () => {
                                 <td>{medicine.name}</td>
                                 <td>{medicine.category}</td>
                                 <td className="flex justify-center gap-9">
-                                    <button className="btn">Update</button>
+                                    <Link to={`/dashboard/updateManage/${medicine._id}`}><button className="btn">Update</button></Link>
 
                                     <button onClick={() => handleDelete(medicine._id, medicine)} className="btn" ><AiTwotoneDelete className="text-xl text-red-600"></AiTwotoneDelete></button>
                                 </td>
