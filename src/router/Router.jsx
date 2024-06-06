@@ -13,12 +13,13 @@ import ManageUser from "../pages/dashboard/adminDashboard/ManageUser";
 import ManageCategory from "../pages/dashboard/adminDashboard/ManageCategory";
 import UpDateMangeCatery from "../pages/dashboard/adminDashboard/UpDateMangeCatery";
 import SpesicCategoryDetails from "../pages/home/homeComponent/SpesicCategoryDetails";
+import ErrorPage from "../pages/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <MainLayout></MainLayout>,
-        errorElement: <h2>TODO: error page is being created</h2>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
@@ -41,30 +42,30 @@ export const router = createBrowserRouter([
                 element: <MyCarts></MyCarts>
             },
             {
-                path:'/:category',
-                element:<SpesicCategoryDetails></SpesicCategoryDetails>
+                path: '/:category',
+                element: <SpesicCategoryDetails></SpesicCategoryDetails>
             }
         ]
     },
     {
         path: '/dashboard',
         element: <Dashboard></Dashboard>,
-        children:[
+        children: [
             {
-                path:'adminHome',
-                element:<AdminHome></AdminHome>
+                path: 'adminHome',
+                element: <AdminHome></AdminHome>
             },
             {
-                path:'manageUsers',
-                element:<ManageUser></ManageUser>
+                path: 'manageUsers',
+                element: <ManageUser></ManageUser>
             },
             {
-                path:'manageCategory',
-                element:<ManageCategory></ManageCategory>
+                path: 'manageCategory',
+                element: <ManageCategory></ManageCategory>
             },
             {
-                path:'updateManage/:id',
-                element:<UpDateMangeCatery></UpDateMangeCatery>
+                path: 'updateManage/:id',
+                element: <UpDateMangeCatery></UpDateMangeCatery>
             }
         ]
     }

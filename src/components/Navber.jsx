@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import useMyCarts from "../hooks/useMyCarts";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
-// import logo from "../assets/logo.jpg"
+import logo from "../assets/logo1.gif"
 
 
 const Navber = () => {
@@ -40,7 +40,7 @@ const Navber = () => {
                         </ul>
                     </div>
                     <Link to='/' className="btn btn-ghost text-xl">
-                        {/* <img className="w-[160px] h-[160px]" src="" alt="" /> */}
+                        <img className="" src={logo} alt="" />
                         MediGlam</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
