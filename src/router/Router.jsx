@@ -14,6 +14,7 @@ import ManageCategory from "../pages/dashboard/adminDashboard/ManageCategory";
 import UpDateMangeCatery from "../pages/dashboard/adminDashboard/UpDateMangeCatery";
 import SpesicCategoryDetails from "../pages/home/homeComponent/SpesicCategoryDetails";
 import ErrorPage from "../pages/ErrorPage";
+import ManageMedicine from "../pages/dashboard/sellerDashboard/ManageMedicine";
 
 export const router = createBrowserRouter([
     {
@@ -66,6 +67,10 @@ export const router = createBrowserRouter([
             {
                 path: 'updateManage/:id',
                 element: <UpDateMangeCatery></UpDateMangeCatery>
+            },
+            {
+                path:'sellerMedicine',
+                element:<ManageMedicine></ManageMedicine>
             }
         ]
     }
