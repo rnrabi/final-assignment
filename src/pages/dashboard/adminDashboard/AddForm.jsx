@@ -60,7 +60,7 @@ const AddForm = () => {
                             </div>
                         </div>
                     </fieldset>
-                    <input className="btn" type="submit" value='Update Category' />
+                    <input className="btn" type="submit" value='Add Category' />
                 </form>
             </section>
         </div>

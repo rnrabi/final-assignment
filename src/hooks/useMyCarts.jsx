@@ -6,14 +6,14 @@ import useAuth from "./useAuth";
 const useMyCarts = () => {
     const { user } = useAuth()
     const axiosPublic = useAxiosPublic()
-    const { data: myCarts = [] } = useQuery({
+    const { data: myCarts = [], refetch } = useQuery({
         queryKey: [user?.email, 'myCarts'],
         queryFn: async () => {
             const res = await axiosPublic.get(`/myCarts/${user?.email}`)
             return res.data;
         }
     })
-    return [myCarts]
+    return [myCarts, refetch]
 };
 
 export default useMyCarts;

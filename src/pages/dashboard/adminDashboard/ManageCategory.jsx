@@ -12,18 +12,32 @@ const ManageCategory = () => {
     const axiosSecure = useAxiosSecure()
 
     const handleDelete = async (deleteId, medicine) => {
-        const { data } = await axiosSecure.delete(`/allMedicine/${deleteId}`)
-        console.log(data)
-        if (data.deletedCount > 0) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: `${medicine.category} is deleted`,
-                showConfirmButton: false,
-                timer: 1500
-            });
-            refetch()
-        }
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async(result) => {
+            if (result.isConfirmed) {
+
+                const { data } = await axiosSecure.delete(`/allMedicine/${deleteId}`)
+                console.log(data)
+                if (data.deletedCount > 0) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `${medicine.category} is deleted`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch()
+                }
+            }
+        });
+  
     }
 
 
@@ -72,7 +86,7 @@ const ManageCategory = () => {
 
             <dialog id="my_modal_1" className="modal w-full">
                 <div className="modal-box w-full">
-                    
+
                     <AddForm></AddForm>
 
                     <div className="modal-action">

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import useUpdateCategory from "../../../hooks/useUpdateCategory";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 
@@ -9,13 +9,27 @@ import Swal from "sweetalert2";
 const UpDateMangeCatery = () => {
     const { id } = useParams()
     const [updateCategory] = useUpdateCategory(id)
-    const axiosSecure = useAxiosSecure()
     console.log(updateCategory)
+    const axiosSecure = useAxiosSecure()
+    const navigate = useNavigate()
 
     const {
         register,
         handleSubmit
-    } = useForm()
+    } = useForm({
+        defaultValues: {
+            name: updateCategory?.name,
+            category: updateCategory?.category,
+            dosage: updateCategory?.dosage_form,
+            image: updateCategory?.image_url,
+            price: updateCategory?.price,
+            quantity: updateCategory?.quantity,
+            strength: updateCategory?.strength,
+            description: updateCategory?.description,
+            manufacturer: updateCategory?.manufacturer
+
+        }
+    })
 
     const onSubmit = async (data) => {
         // console.log(data)
@@ -36,7 +50,7 @@ const UpDateMangeCatery = () => {
 
         const { data: updateData } = await axiosSecure.post('/allMedicine', updateInfo)
         console.log(updateData)
-        if(updateData.insertedId){
+        if (updateData.insertedId) {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -44,6 +58,7 @@ const UpDateMangeCatery = () => {
                 showConfirmButton: false,
                 timer: 1500
             });
+            navigate('/dashboard/manageCategory')
         }
 
     }
@@ -52,7 +67,7 @@ const UpDateMangeCatery = () => {
 
     return (
         <div>
-            <h2>This is update manage category</h2>
+            <h2 className="text-center text-xl font-bold">Update the medicine category</h2>
             <div className="hero min-h-screen bg-base-200">
                 <div className="hero-content flex-col lg:flex-row-reverse">
 
@@ -65,14 +80,14 @@ const UpDateMangeCatery = () => {
                                     <label className="label">
                                         <span className="label-text">name</span>
                                     </label>
-                                    <input defaultValue={updateCategory?.name}  {...register("name", { required: true })} type="text" placeholder="name" className="input input-bordered" required />
+                                    <input {...register("name", { required: true })} type="text" placeholder="name" className="input input-bordered" required />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">category</span>
                                     </label>
-                                    <input defaultValue={updateCategory?.category}  {...register("category", { required: true })} type="text" placeholder="category" className="input input-bordered" required />
+                                    <input   {...register("category", { required: true })} type="text" placeholder="category" className="input input-bordered" required />
                                 </div>
                             </div>
                             <div className="flex justify-between gap-10 mb-5">
@@ -80,14 +95,14 @@ const UpDateMangeCatery = () => {
                                     <label className="label">
                                         <span className="label-text">ImageURL</span>
                                     </label>
-                                    <input defaultValue={updateCategory?.image_url}  {...register("image", { required: true })} type="text" placeholder="imageURL" className="input input-bordered" required />
+                                    <input {...register("image", { required: true })} type="text" placeholder="imageURL" className="input input-bordered" required />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">manufacturer</span>
                                     </label>
-                                    <input defaultValue={updateCategory?.manufacturer}  {...register("manufacturer", { required: true })} type="text" placeholder="manufacturer" className="input input-bordered" required />
+                                    <input  {...register("manufacturer", { required: true })} type="text" placeholder="manufacturer" className="input input-bordered" required />
                                 </div>
                             </div>
                             <div className="flex justify-between gap-10 mb-5">
@@ -95,14 +110,14 @@ const UpDateMangeCatery = () => {
                                     <label className="label">
                                         <span className="label-text">dosage form</span>
                                     </label>
-                                    <input defaultValue={updateCategory?.dosage_form}  {...register("dosage", { required: true })} type="text" placeholder="dosage" className="input input-bordered" required />
+                                    <input  {...register("dosage", { required: true })} type="text" placeholder="dosage" className="input input-bordered" required />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">quantity</span>
                                     </label>
-                                    <input defaultValue={updateCategory?.quantity} {...register("quantity", { required: true })} type="text" placeholder="quantity" className="input input-bordered" required />
+                                    <input  {...register("quantity", { required: true })} type="text" placeholder="quantity" className="input input-bordered" required />
                                 </div>
                             </div>
                             <div className="flex justify-between gap-10 mb-5">
@@ -110,14 +125,14 @@ const UpDateMangeCatery = () => {
                                     <label className="label">
                                         <span className="label-text">price</span>
                                     </label>
-                                    <input defaultValue={updateCategory?.price}  {...register("price", { required: true })} type="text" placeholder="price" className="input input-bordered" required />
+                                    <input  {...register("price", { required: true })} type="text" placeholder="price" className="input input-bordered" required />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">strength</span>
                                     </label>
-                                    <input defaultValue={updateCategory?.strength} {...register("strength", { required: true })} type="text" placeholder="strength" className="input input-bordered" required />
+                                    <input  {...register("strength", { required: true })} type="text" placeholder="strength" className="input input-bordered" required />
                                 </div>
                             </div>
                             <div className="mb-5">
@@ -125,7 +140,7 @@ const UpDateMangeCatery = () => {
                                     <label className="label">
                                         <span className="label-text">description</span>
                                     </label>
-                                    <input defaultValue={updateCategory?.description}  {...register("description", { required: true })} type="text" placeholder="description" className="input input-bordered" required />
+                                    <input   {...register("description", { required: true })} type="text" placeholder="description" className="input input-bordered" required />
                                 </div>
 
                             </div>

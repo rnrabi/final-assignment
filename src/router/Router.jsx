@@ -12,6 +12,7 @@ import AdminHome from "../pages/dashboard/adminDashboard/AdminHome";
 import ManageUser from "../pages/dashboard/adminDashboard/ManageUser";
 import ManageCategory from "../pages/dashboard/adminDashboard/ManageCategory";
 import UpDateMangeCatery from "../pages/dashboard/adminDashboard/UpDateMangeCatery";
+import SpesicCategoryDetails from "../pages/home/homeComponent/SpesicCategoryDetails";
 
 export const router = createBrowserRouter([
     {
@@ -38,6 +39,10 @@ export const router = createBrowserRouter([
             {
                 path: '/myCart',
                 element: <MyCarts></MyCarts>
+            },
+            {
+                path:'/:category',
+                element:<SpesicCategoryDetails></SpesicCategoryDetails>
             }
         ]
     },
