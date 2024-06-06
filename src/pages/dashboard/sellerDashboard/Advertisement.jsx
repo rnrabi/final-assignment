@@ -17,7 +17,7 @@ const Advertisement = () => {
     const onSubmit = async (data) => {
         console.log(data)
         const name = data.name;
-
+        // ok upload image in image bb
         const imageFile = data.image[0];
         const formData = new FormData();
         formData.append("image", imageFile);
