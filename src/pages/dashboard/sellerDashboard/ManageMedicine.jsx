@@ -1,19 +1,88 @@
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
+import useAllMedicineEmail from "../../../hooks/useAllMedicineEmail";
+
 
 
 const ManageMedicine = () => {
+    const axiosSecure = useAxiosSecure()
+    const { user } = useAuth()
+    const [sellerMedi, refetch] = useAllMedicineEmail()
+    console.log(sellerMedi)
+
     const {
         register,
-        handleSubmit
+        handleSubmit,
+        reset
     } = useForm()
 
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = async (data) => {
+        console.log(data)
+
+        const category = data.category;
+        const description = data.description;
+        const dosage = data.dosage;
+        const image = data.image;
+        const manufacturer = data.manufacturer;
+        const name = data.name;
+        const price = data.price;
+        const quantity = data.quantity;
+        const strength = data.strength;
+        const seller = {
+            email: user?.email
+        }
+
+
+        console.log(category, description, dosage, image, manufacturer, name, price, quantity, strength, seller)
+
+        const addMedicine = { category, description, dosage, image, manufacturer, name, price, quantity, strength, seller }
+
+        const { data: addedMedi } = await axiosSecure.post('/allMedicine', addMedicine)
+        console.log(addedMedi)
+        if (addedMedi.insertedId) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `Added the medicine`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+            refetch()
+        }
+
+        reset()
+    }
+
+    const handleRemove = async(id) => {
+        console.log(id)
+        const { data } = await axiosSecure.delete(`/allMedicine/${id}`)
+        console.log(data)
+        if(data.deletedCount>0){
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: `Removed the medicine`,
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+        refetch()
+    }
+
+
+
+
+
     return (
         <div>
             <h2 className="text-2xl text-center font-bold my-10">My added medicine</h2>
 
             <div className="text-right"><button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn bg-gray-400">Add Medicine</button></div>
 
+            {/* Table of seller added medicine */}
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}
@@ -27,30 +96,33 @@ const ManageMedicine = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
-                        <tr>
-                            <th>1</th>
-                            <td>
-                                <div className="flex items-center gap-3">
-                                    <div className="avatar">
-                                        <div className="mask mask-squircle w-12 h-12">
-                                            <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                        {
+                            sellerMedi?.map((medi, idx) => <tr key={medi._id}>
+                                <th>{idx + 1}</th>
+                                <td>
+                                    <div className="flex items-center gap-3">
+                                        <div className="avatar">
+                                            <div className="mask mask-squircle w-12 h-12">
+                                                {/* <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" /> */}
+                                                <h2>TODO</h2>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>name</td>
-                            <td>Category</td>
-                            <th>
-                                <button className="btn btn-ghost btn-xs">Remove</button>
-                            </th>
-                        </tr>
+                                </td>
+                                <td>{medi.name}</td>
+                                <td>{medi.category}</td>
+                                <th>
+                                    <button onClick={() => handleRemove(medi._id)} className="btn btn-ghost btn-xs">Remove</button>
+                                </th>
+                            </tr>)
+                        }
+
                     </tbody>
 
                 </table>
             </div>
 
-
+            {/* modal form */}
             <dialog id="my_modal_3" className="modal">
                 <div className="modal-box min-w-fit">
 

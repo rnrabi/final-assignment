@@ -20,7 +20,7 @@ const UpDateMangeCatery = () => {
         defaultValues: {
             name: updateCategory?.name,
             category: updateCategory?.category,
-            dosage: updateCategory?.dosage_form,
+            dosage: updateCategory?.dosage,
             image: updateCategory?.image_url,
             price: updateCategory?.price,
             quantity: updateCategory?.quantity,

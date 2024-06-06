@@ -107,7 +107,7 @@ const Shop = () => {
                         <div className="flex justify-between gap-12">
                             <div>
                                 <h2>Category:{singleMedi.category}</h2>
-                                <h2>Dosage:{singleMedi.dosage_form}</h2>
+                                <h2>Dosage:{singleMedi.dosage}</h2>
                                 <h2>Manufacturer:{singleMedi.manufacturer}</h2>
                             </div>
                             <div>
