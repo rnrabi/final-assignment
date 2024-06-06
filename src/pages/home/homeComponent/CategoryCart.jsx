@@ -16,7 +16,7 @@ const CategoryCart = ({ category }) => {
                     </figure>
                     <div className="card-body items-center text-center">
                         <h2 className="card-title">{category}</h2>
-                        <p>Number of Medicine :{specificCategory.length} pis</p>
+                        <p>Number of Medicine :{specificCategory?.length} pis</p>
 
                     </div>
                 </div>
