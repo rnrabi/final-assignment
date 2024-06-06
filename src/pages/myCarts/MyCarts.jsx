@@ -2,16 +2,34 @@ import useMyCarts from "../../hooks/useMyCarts";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 
 
 const MyCarts = () => {
-    const [myCarts] = useMyCarts()
+    const [myCarts, refetch] = useMyCarts()
     console.log(myCarts)
+    const axiosPublic = useAxiosPublic()
     const [quantity, setQuantity] = useState(0)
 
     const handleIncrise = () => {
         setQuantity(quantity + 1)
+    }
+
+    const handleRemove = async (id) => {
+        const { data } = await axiosPublic.delete(`/myCarts/${id}`)
+        console.log(data)
+        if (data.deletedCount > 0) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Removed success fully",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            refetch()
+        }
     }
 
 
@@ -50,7 +68,7 @@ const MyCarts = () => {
                                         <button onClick={handleIncrise}><FaPlus></FaPlus></button>
                                     </div>
                                 </td>
-                                <td><button className="btn">remove</button></td>
+                                <td><button onClick={() => handleRemove(myCart._id)} className="btn">remove</button></td>
                             </tr>)
                         }
 
