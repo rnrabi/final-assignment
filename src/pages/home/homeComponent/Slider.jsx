@@ -21,6 +21,10 @@ const Slider = () => {
         }
     })
     console.log(image)
+    
+    const slidesPerView = 1;
+    const slidesPerGroup = 1;
+    const enableLoop = image?.length >= (slidesPerView + slidesPerGroup);
 
     return (
         <>
@@ -32,7 +36,7 @@ const Slider = () => {
                     disableOnInteraction: false,
                 }}
 
-                loop={true}
+                loop={enableLoop}
                 pagination={{
                     clickable: true,
                 }}
@@ -43,7 +47,7 @@ const Slider = () => {
                 {
                     image?.map((img, idx) => <SwiperSlide key={idx}> <img className='h-[500px] w-full' src={img} alt="" /> </SwiperSlide>)
                 }
-              
+
             </Swiper>
         </>
     );
