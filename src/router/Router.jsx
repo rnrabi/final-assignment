@@ -16,6 +16,7 @@ import SpesicCategoryDetails from "../pages/home/homeComponent/SpesicCategoryDet
 import ErrorPage from "../pages/ErrorPage";
 import ManageMedicine from "../pages/dashboard/sellerDashboard/ManageMedicine";
 import Advertisement from "../pages/dashboard/sellerDashboard/Advertisement";
+import BannerAdvertise from "../pages/dashboard/adminDashboard/BannerAdvertise";
 
 export const router = createBrowserRouter([
     {
@@ -76,6 +77,10 @@ export const router = createBrowserRouter([
             {
                 path:'sellerAdvertisement',
                 element:<Advertisement></Advertisement>
+            },
+            {
+                path:'bannerAdvertise',
+                element:<BannerAdvertise></BannerAdvertise>
             }
         ]
     }

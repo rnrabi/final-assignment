@@ -3,11 +3,15 @@ import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import axios from "axios";
 import Swal from "sweetalert2";
+import useMyAdvertise from "../../../hooks/useMyAdvertise";
 
 
 const Advertisement = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure();
+    const [myAdds] = useMyAdvertise()
+    console.log(myAdds)
+
     const {
         register,
         handleSubmit,
@@ -66,25 +70,30 @@ const Advertisement = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
-                        <tr>
-                            <td>
-                                <div className="flex items-center gap-3">
-                                    <div className="avatar">
-                                        <div className="mask mask-squircle w-12 h-12">
-                                            <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                        {
+                            myAdds.map(add=> <tr 
+                            key={add._id}
+                            className="text-center"
+                            >
+                                <td>
+                                    <div className="flex items-center gap-3">
+                                        <div className="avatar">
+                                            <div className="mask mask-squircle w-12 h-12">
+                                                <img src={add.image} alt="Avatar Tailwind CSS Component" />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                Zemlak
-                            </td>
-                            <td>Pending</td>
-                            {/* <th>
-                                <button className="btn btn-ghost btn-xs">details</button>
-                            </th> */}
-                        </tr>
+                                </td>
+                                <td>
+                                   {add.name}
+                                </td>
+                                <td className="text-slate-400">{add.status}</td>
+                                {/* <th>
+                                    <button className="btn btn-ghost btn-xs">details</button>
+                                </th> */}
+                            </tr>)
+                        }
+                       
                     </tbody>
                 </table>
             </div>

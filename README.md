@@ -1,8 +1,30 @@
-# React + Vite
+website name : MediGlam
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+admin username : 
 
-Currently, two official plugins are available:
+admin email : 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+password : 
+
+live site : 
+
+bullet point : 
+1. Wide Range of Medicines: Mediglam offers a comprehensive selection of prescription and over-the-counter medicines, catering to various health needs.
+
+2. Easy Online Purchasing: Users can conveniently buy their required medicines online with a few simple clicks.
+
+3. User-Friendly Interface: The website boasts a clean, intuitive design, making it easy for customers to navigate and find the products they need.
+
+4. Secure Transactions: Mediglam ensures all transactions are secure, protecting user information and payment details.
+
+5. Detailed Product Information: Each medicine listing includes detailed descriptions, dosage instructions, and potential side effects to help users make informed choices.
+
+6. Pharmacy Services: Mediglam provides professional pharmacy services, including consultations with licensed pharmacists for personalized advice.
+
+7. Home Delivery: Customers can enjoy the convenience of home delivery, ensuring they receive their medicines quickly and safely.
+
+8. Competitive Pricing: The website offers competitive prices on all products, ensuring affordability for all customers.
+
+9. Subscription Service: Users can subscribe for regular deliveries of their essential medicines, ensuring they never run out of important medications.
+
+10. Customer Support: Mediglam offers excellent customer support through multiple channels, including live chat, email, and phone, to assist users with any inquiries or issues.
