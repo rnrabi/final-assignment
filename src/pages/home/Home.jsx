@@ -1,5 +1,6 @@
 import useAllMedicine from "../../hooks/useAllMedicine";
 import CategoryCart from "./homeComponent/CategoryCart";
+import Slider from "./homeComponent/Slider";
 
 
 const Home = () => {
@@ -11,9 +12,15 @@ const Home = () => {
     return (
         <div>
             <h2>This is home page</h2>
+            {/* slider section */}
+            <div>
+                <Slider></Slider>
+            </div>
+
+
             <div className="md:grid grid-cols-3 gap-4">
                 {
-                    categoryList.slice(0 , 6).map((category, idx) => <CategoryCart
+                    categoryList.slice(0, 6).map((category, idx) => <CategoryCart
                         key={idx}
                         category={category}
                     ></CategoryCart>)
