@@ -38,7 +38,10 @@ const Slider = () => {
                 modules={[Autoplay, Pagination, Navigation]}
                 className="mySwiper"
             >
-                <SwiperSlide>Slide 1</SwiperSlide>
+                {
+                    image.map((img, idx) => <SwiperSlide key={idx}> <img src={img} alt="" /> </SwiperSlide>)
+                }
+                {/* <SwiperSlide>Slide 1</SwiperSlide>
                 <SwiperSlide>Slide 2</SwiperSlide>
                 <SwiperSlide>Slide 3</SwiperSlide>
                 <SwiperSlide>Slide 4</SwiperSlide>
@@ -46,7 +49,7 @@ const Slider = () => {
                 <SwiperSlide>Slide 6</SwiperSlide>
                 <SwiperSlide>Slide 7</SwiperSlide>
                 <SwiperSlide>Slide 8</SwiperSlide>
-                <SwiperSlide>Slide 9</SwiperSlide>
+                <SwiperSlide>Slide 9</SwiperSlide> */}
 
             </Swiper>
         </>
