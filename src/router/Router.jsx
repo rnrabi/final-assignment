@@ -17,6 +17,7 @@ import ErrorPage from "../pages/ErrorPage";
 import ManageMedicine from "../pages/dashboard/sellerDashboard/ManageMedicine";
 import Advertisement from "../pages/dashboard/sellerDashboard/Advertisement";
 import BannerAdvertise from "../pages/dashboard/adminDashboard/BannerAdvertise";
+import PrivateRoute from "./privateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
     {
@@ -42,7 +43,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/myCart',
-                element: <MyCarts></MyCarts>
+                element: <PrivateRoute><MyCarts></MyCarts></PrivateRoute>
             },
             {
                 path: '/:category',
