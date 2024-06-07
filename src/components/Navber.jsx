@@ -27,7 +27,7 @@ const Navber = () => {
 
 
     return (
-        <div>
+        <div className="">
             <div className="navbar bg-base-100">
                 <div className="navbar-start">
                     <div className="dropdown">
@@ -58,7 +58,7 @@ const Navber = () => {
                         <li>
                             <details>
                                 <summary>Language</summary>
-                                <ul className="p-2">
+                                <ul className="p-2 z-10">
                                     <li><a>English</a></li>
                                     <li><a>বাংলা</a></li>
                                 </ul>
@@ -76,7 +76,7 @@ const Navber = () => {
                                             <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
                                         </div>
                                     </div>
-                                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 z-10">
                                         <li>
                                             <button className="" onClick={() => document.getElementById('my_modal_2').showModal()}>Update Profile</button>
                                         </li>

@@ -13,7 +13,7 @@ const Home = () => {
         <div>
             <h2>This is home page</h2>
             {/* slider section */}
-            <div>
+            <div className="w-full md:w-11/12 mx-auto">
                 <Slider></Slider>
             </div>
 
