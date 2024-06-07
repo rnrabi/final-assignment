@@ -2,11 +2,13 @@ import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 
 const Login = () => {
     const { logInUser, googleSignUp } = useAuth()
+    const axiosPublic = useAxiosPublic()
     const location = useLocation()
     const navigate = useNavigate()
     const { register, handleSubmit } = useForm()
@@ -37,7 +39,7 @@ const Login = () => {
     // google log in here
     const handleGoogleLogIn = () => {
         googleSignUp()
-            .then(result => {
+            .then(async result => {
                 console.log(result.user)
                 Swal.fire({
                     position: "top-end",
@@ -47,6 +49,18 @@ const Login = () => {
                     timer: 1500
                 });
                 navigate(location.state || '/')
+
+                const name = result.user.displayName;
+                const email = result.user.email;
+                // const password = data.password;
+                const roll = 'User';
+                const image = result.user.photoURL;
+                // console.log(name, email, roll, image)
+
+                const userInfo = { name, email, roll, image}
+                const response = await axiosPublic.post('/users', userInfo)
+                console.log(response.data)
+
             })
             .catch(err => console.log(err.message))
     }
