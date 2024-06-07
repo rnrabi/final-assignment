@@ -4,6 +4,7 @@ import useMyCarts from "../hooks/useMyCarts";
 import useAuth from "../hooks/useAuth";
 import Swal from "sweetalert2";
 import logo from "../assets/logo1.gif"
+import NaveModal from "./NaveModal";
 
 
 const Navber = () => {
@@ -76,7 +77,9 @@ const Navber = () => {
                                         </div>
                                     </div>
                                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li> <a>Update Profile</a></li>
+                                        <li>
+                                            <button className="" onClick={() => document.getElementById('my_modal_2').showModal()}>Update Profile</button>
+                                        </li>
                                         <li><Link to='/dashboard'>Dashboard</Link></li>
                                         <li><button onClick={handleLogOut}>Logout</button></li>
                                     </ul>
@@ -89,6 +92,7 @@ const Navber = () => {
 
                 </div>
             </div>
+            <NaveModal></NaveModal>
         </div>
     );
 };
