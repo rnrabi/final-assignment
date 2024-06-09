@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
                 element: <SpesicCategoryDetails></SpesicCategoryDetails>
             },
             {
-                path:'/testInvoice',
+                path:'/invoice',
                 element:<Invoice></Invoice>
             }
         ]

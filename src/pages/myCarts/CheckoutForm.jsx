@@ -8,6 +8,7 @@ import './stripe.css';
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ price }) => {
     const axiosSecure = useAxiosSecure()
@@ -15,6 +16,9 @@ const CheckoutForm = ({ price }) => {
     const stripe = useStripe();
     const elements = useElements();
     console.log(price)
+    const navigate = useNavigate()
+
+
     // const [clientSecret , setClientSecret] = useState('')
     const { data: clientSecret, isLoading, isError } = useQuery({
         queryKey: ['payment-intent'],
@@ -86,7 +90,8 @@ const CheckoutForm = ({ price }) => {
             }
             // database a save korbo 
             // change status
-            console.log('success payment',paymentInfo)
+            console.log('success payment', paymentInfo)
+            navigate('/invoice')
         }
 
 

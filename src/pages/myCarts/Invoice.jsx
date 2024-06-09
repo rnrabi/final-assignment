@@ -1,9 +1,12 @@
-import { usePDF, Document, Page } from '@react-pdf/renderer';
+import { usePDF, Document, Page, Text } from '@react-pdf/renderer';
+import InvoiceMemo from './InvoiceMemo';
+
+
 
 const MyDoc = (
     <Document>
         <Page>
-            <p>This is download data</p>
+            <InvoiceMemo></InvoiceMemo>
         </Page>
     </Document>
 );
