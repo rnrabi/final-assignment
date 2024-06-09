@@ -1,5 +1,6 @@
 import { usePDF, Document, Page, Text } from '@react-pdf/renderer';
 import InvoiceMemo from './InvoiceMemo';
+import InvoiceDesplay from './InvoiceDesplay';
 
 
 
@@ -19,9 +20,13 @@ const Invoice = () => {
     if (instance.error) return <div>Something went wrong: {error}</div>;
 
     return (
-        <a href={instance.url} download="test.pdf">
-            <button className='btn'>Download</button>
-        </a>
+        <>
+            <InvoiceDesplay></InvoiceDesplay>
+            
+            <a href={instance.url} download="test.pdf">
+                <button className='btn'>Download</button>
+            </a>
+        </>
     );
 };
 
