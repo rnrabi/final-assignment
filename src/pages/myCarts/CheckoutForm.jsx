@@ -2,13 +2,12 @@
 import PropTypes from 'prop-types';
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
-// import '../styles/common.css';
 import './stripe.css';
-// import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate } from 'react-router-dom';
+import useMyCarts from '../../hooks/useMyCarts';
 
 const CheckoutForm = ({ price }) => {
     const axiosSecure = useAxiosSecure()
@@ -17,9 +16,9 @@ const CheckoutForm = ({ price }) => {
     const elements = useElements();
     console.log(price)
     const navigate = useNavigate()
+    const [myCarts] = useMyCarts()
+    console.log(...myCarts)
 
-
-    // const [clientSecret , setClientSecret] = useState('')
     const { data: clientSecret, isLoading, isError } = useQuery({
         queryKey: ['payment-intent'],
         queryFn: async () => {
@@ -38,25 +37,18 @@ const CheckoutForm = ({ price }) => {
     }
 
     const handleSubmit = async (event) => {
-        // Block native form submission.
         event.preventDefault();
 
         if (!stripe || !elements) {
-            // Stripe.js has not loaded yet. Make sure to disable
-            // form submission until Stripe.js has loaded.
             return;
         }
 
-        // Get a reference to a mounted CardElement. Elements knows how
-        // to find your CardElement because there can only ever be one of
-        // each type of element.
         const card = elements.getElement(CardElement);
 
         if (card == null) {
             return;
         }
 
-        // Use your card Element with other Stripe.js APIs
         const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card,
@@ -84,18 +76,24 @@ const CheckoutForm = ({ price }) => {
 
         if (paymentIntent.status === 'succeeded') {
             const paymentInfo = {
-                // save to medicine info
+                products: { ...myCarts },
                 transactionId: paymentIntent.id,
-                // date: new Date()
+                totalPrice: price,
+                customar: {
+                    name: user?.displayName,
+                    email: user?.email
+                },
+
+                status: 'confirm'
+
             }
             // database a save korbo 
-            // change status
+            const { data } = axiosSecure.post('/booking', paymentInfo)
+            console.log(data)
+
             console.log('success payment', paymentInfo)
             navigate('/invoice')
         }
-
-
-
 
     };
 

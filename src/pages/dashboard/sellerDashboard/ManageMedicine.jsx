@@ -31,6 +31,7 @@ const ManageMedicine = () => {
         const quantity = data.quantity;
         const strength = data.strength;
         const seller = {
+            name:user?.displayName,
             email: user?.email
         }
 
@@ -200,7 +201,7 @@ const ManageMedicine = () => {
                                             <label className="label">
                                                 <span className="label-text">price</span>
                                             </label>
-                                            <input  {...register("price", { required: true })} type="text" placeholder="price" className="input input-bordered" required />
+                                            <input  {...register("price", { required: true })} type="number" placeholder="price" className="input input-bordered" required />
                                         </div>
 
                                         <div className="form-control">

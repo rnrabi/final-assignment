@@ -32,10 +32,20 @@ const Shop = () => {
         const email = user?.email;
         const price = singleMedi.price;
         const quantity = singleMedi.quantity;
+        const seller = singleMedi.seller;
+        // TODO : image set korte hobe
+        const category = singleMedi.category;
+        const description = singleMedi.description;
+        const dosage = singleMedi.dosage;
         const company = singleMedi.manufacturer;
+        const strength = singleMedi.strength;
+        const buyer = {
+            name: user?.displayName,
+            email: user?.email
+        }
 
-        console.log(name, email, price, quantity, company)
-        const myMediInfo = { name, email, price, quantity, company }
+        console.log(name, email, price, quantity, company, seller, category, description, dosage, strength, buyer)
+        const myMediInfo = { name, email, price, quantity, company, seller, category, description, dosage, strength, buyer }
 
         const resMedi = await axiosPublic.post('/myCarts', myMediInfo)
         console.log(resMedi.data)
@@ -46,8 +56,8 @@ const Shop = () => {
                 title: "You have added to cart",
                 showConfirmButton: false,
                 timer: 1500
-              });
-              refetch()  
+            });
+            refetch()
         }
     }
 
