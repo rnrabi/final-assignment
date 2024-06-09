@@ -4,6 +4,7 @@ import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import { Link} from "react-router-dom";
 
 
 
@@ -35,10 +36,14 @@ const MyCarts = () => {
 
     return (
         <div>
-            <h2 className="text-xl font-bold text-center my-10">My Carts</h2>
-            <div>
-                <h2>all clear caart </h2>
+            <div className="flex justify-center items-center gap-5">
+                <h2 className="text-xl font-bold text-center my-10">My Carts</h2> <Link to='checkOut'><button className="btn btn-sm bg-slate-300">Check Out</button></Link>
             </div>
+
+            <div>
+                <button className="btn btn-outline">all clear caart </button>
+            </div>
+
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* head */}

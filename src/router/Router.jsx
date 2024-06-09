@@ -18,6 +18,8 @@ import ManageMedicine from "../pages/dashboard/sellerDashboard/ManageMedicine";
 import Advertisement from "../pages/dashboard/sellerDashboard/Advertisement";
 import BannerAdvertise from "../pages/dashboard/adminDashboard/BannerAdvertise";
 import PrivateRoute from "./privateRoute/PrivateRoute";
+import CheckOut from "../pages/myCarts/CheckOut";
+import Invoice from "../pages/myCarts/Invoice";
 
 export const router = createBrowserRouter([
     {
@@ -46,8 +48,16 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><MyCarts></MyCarts></PrivateRoute>
             },
             {
+                path:'/myCart/checkOut',
+                element:<CheckOut></CheckOut>
+            },
+            {
                 path: '/:category',
                 element: <SpesicCategoryDetails></SpesicCategoryDetails>
+            },
+            {
+                path:'/testInvoice',
+                element:<Invoice></Invoice>
             }
         ]
     },
