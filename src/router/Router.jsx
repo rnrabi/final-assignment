@@ -21,6 +21,7 @@ import PrivateRoute from "./privateRoute/PrivateRoute";
 import CheckOut from "../pages/myCarts/CheckOut";
 import Invoice from "../pages/myCarts/Invoice";
 import SellerHome from "../pages/dashboard/sellerDashboard/SellerHome";
+import PaymentHistory from "../pages/dashboard/sellerDashboard/PaymentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -97,6 +98,10 @@ export const router = createBrowserRouter([
             {
                 path:'sellerHome',
                 element:<SellerHome></SellerHome>
+            },
+            {
+                path:'sellerPaymentHistory',
+                element:<PaymentHistory></PaymentHistory>
             }
         ]
     }

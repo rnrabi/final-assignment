@@ -87,9 +87,11 @@ const CheckoutForm = ({ price }) => {
                 status: 'confirm'
 
             }
-            // database a save korbo 
-            const { data } = axiosSecure.post('/booking', paymentInfo)
+            // save in database
+            const { data } = await axiosSecure.post('/booking', paymentInfo)
             console.log(data)
+            const res = await axiosSecure.patch(`/updateCartStatus/${user?.email}`)
+            console.log(res.data)
 
             console.log('success payment', paymentInfo)
             navigate('/invoice')

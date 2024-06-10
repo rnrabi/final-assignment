@@ -43,9 +43,10 @@ const Shop = () => {
             name: user?.displayName,
             email: user?.email
         }
+        const status = 'pending'
 
-        console.log(name, email, price, quantity, company, seller, category, description, dosage, strength, buyer)
-        const myMediInfo = { name, email, price, quantity, company, seller, category, description, dosage, strength, buyer }
+        // console.log(name, email, price, quantity, company, seller, category, description, dosage, strength, buyer)
+        const myMediInfo = { name, email, price, quantity, company, seller, category, description, dosage, strength, buyer, status }
 
         const resMedi = await axiosPublic.post('/myCarts', myMediInfo)
         console.log(resMedi.data)
