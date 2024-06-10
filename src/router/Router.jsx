@@ -20,6 +20,7 @@ import BannerAdvertise from "../pages/dashboard/adminDashboard/BannerAdvertise";
 import PrivateRoute from "./privateRoute/PrivateRoute";
 import CheckOut from "../pages/myCarts/CheckOut";
 import Invoice from "../pages/myCarts/Invoice";
+import SellerHome from "../pages/dashboard/sellerDashboard/SellerHome";
 
 export const router = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([
             {
                 path:'bannerAdvertise',
                 element:<BannerAdvertise></BannerAdvertise>
+            },
+            {
+                path:'sellerHome',
+                element:<SellerHome></SellerHome>
             }
         ]
     }

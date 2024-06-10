@@ -84,7 +84,9 @@ const Shop = () => {
                                 <td>{medicine.name}</td>
                                 <td>{medicine.category}</td>
                                 <td className="flex gap-9">
-                                    <button onClick={() => handleAddToCart(medicine._id)} className="btn">select</button>
+                                    <button onClick={() => handleAddToCart(medicine._id)} className="btn"
+                                        disabled={!user?.email}
+                                    >select</button>
 
                                     <button className="btn" onClick={() => handleClick(medicine._id)}><FaEye className="text-xl"></FaEye></button>
                                 </td>

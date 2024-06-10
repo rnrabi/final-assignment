@@ -76,7 +76,7 @@ const CheckoutForm = ({ price }) => {
 
         if (paymentIntent.status === 'succeeded') {
             const paymentInfo = {
-                products: { ...myCarts },
+                products: [...myCarts],
                 transactionId: paymentIntent.id,
                 totalPrice: price,
                 customar: {

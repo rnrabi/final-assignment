@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import useAllMedicineEmail from "../../../hooks/useAllMedicineEmail";
+import axios from "axios";
 
 
 
@@ -24,24 +25,32 @@ const ManageMedicine = () => {
         const category = data.category;
         const description = data.description;
         const dosage = data.dosage;
-        const image = data.image;
+        const file = data.image[0];
+        // console.log(file)
+        const formData = new FormData()
+        formData.append('image', file);
+        const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imagebb_Api_key}`, formData)
+
+        // console.log(res.data.data.display_url)
+        const image = res.data.data.display_url;
         const manufacturer = data.manufacturer;
         const name = data.name;
         const price = data.price;
+        const discount = data.discount;
         const quantity = data.quantity;
         const strength = data.strength;
         const seller = {
-            name:user?.displayName,
+            name: user?.displayName,
             email: user?.email
         }
 
 
-        console.log(category, description, dosage, image, manufacturer, name, price, quantity, strength, seller)
+        // console.log(category, description, dosage, manufacturer, name, price, quantity, strength, seller , image, discount)
 
-        const addMedicine = { category, description, dosage, image, manufacturer, name, price, quantity, strength, seller }
+        const addMedicine = { category, description, dosage, manufacturer, name, price, quantity, strength, seller, image, discount }
 
         const { data: addedMedi } = await axiosSecure.post('/allMedicine', addMedicine)
-        console.log(addedMedi)
+        // console.log(addedMedi)
         if (addedMedi.insertedId) {
             Swal.fire({
                 position: "top-end",
@@ -56,11 +65,11 @@ const ManageMedicine = () => {
         reset()
     }
 
-    const handleRemove = async(id) => {
+    const handleRemove = async (id) => {
         console.log(id)
         const { data } = await axiosSecure.delete(`/allMedicine/${id}`)
-        console.log(data)
-        if(data.deletedCount>0){
+        // console.log(data)
+        if (data.deletedCount > 0) {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -104,8 +113,7 @@ const ManageMedicine = () => {
                                     <div className="flex items-center gap-3">
                                         <div className="avatar">
                                             <div className="mask mask-squircle w-12 h-12">
-                                                {/* <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" /> */}
-                                                <h2>TODO</h2>
+                                                <img src={medi?.image} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
                                     </div>
@@ -211,15 +219,27 @@ const ManageMedicine = () => {
                                             <input  {...register("strength", { required: true })} type="text" placeholder="strength" className="input input-bordered" required />
                                         </div>
                                     </div>
-                                    <div className="mb-5">
+
+                                    <div className="flex justify-between gap-10 mb-5">
                                         <div className="form-control">
                                             <label className="label">
-                                                <span className="label-text">description</span>
+                                                <span className="label-text">Discount</span>
                                             </label>
-                                            <input   {...register("description", { required: true })} type="text" placeholder="description" className="input input-bordered" required />
+                                            <input  {...register("discount", { required: true })} type="number" placeholder="discount" 
+                                            defaultValue={0}
+                                            className="input input-bordered" required />
                                         </div>
+                                        <div className="mb-5">
+                                            <div className="form-control">
+                                                <label className="label">
+                                                    <span className="label-text">description</span>
+                                                </label>
+                                                <input   {...register("description", { required: true })} type="text" placeholder="description" className="input input-bordered" required />
+                                            </div>
 
+                                        </div>
                                     </div>
+
 
                                     <div className="form-control mt-6">
                                         <button className="btn btn-primary">Add medicine</button>
