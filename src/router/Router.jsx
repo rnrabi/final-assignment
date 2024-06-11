@@ -22,6 +22,7 @@ import CheckOut from "../pages/myCarts/CheckOut";
 import Invoice from "../pages/myCarts/Invoice";
 import SellerHome from "../pages/dashboard/sellerDashboard/SellerHome";
 import PaymentHistory from "../pages/dashboard/sellerDashboard/PaymentHistory";
+import SellerReport from "../pages/dashboard/adminDashboard/SellerReport";
 
 export const router = createBrowserRouter([
     {
@@ -102,6 +103,10 @@ export const router = createBrowserRouter([
             {
                 path:'sellerPaymentHistory',
                 element:<PaymentHistory></PaymentHistory>
+            },
+            {
+                path:'salesReport',
+                element:<SellerReport></SellerReport>
             }
         ]
     }

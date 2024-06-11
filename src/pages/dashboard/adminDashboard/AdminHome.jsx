@@ -1,22 +1,33 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
-import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const AdminHome = () => {
 
     const { user } = useAuth()
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const { data: adHome } = useQuery({
         queryKey: [user?.email, 'myCarts'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/booking`)
+            const res = await axiosSecure.get(`/booking`)
             return res.data;
         }
     })
-    console.log(adHome)
-    const priceInTotal = adHome.reduce((sum, item) => sum + item.totalPrice, 0)
-    console.log(priceInTotal)
+    const { data: allCarts } = useQuery({
+        queryKey: [user?.email, 'allCarts'],
+        queryFn: async () => {
+            const res = await axiosSecure.get(`/carts`)
+            return res.data;
+        }
+    })
+
+    // console.log(adHome)
+    // console.log(allCarts)
+    const totalSales = adHome?.reduce((sum, sel) => sum + sel.products.length, 0) ?? 0;
+    const priceInTotal = adHome?.reduce((sum, item) => sum + parseFloat(parseFloat(item.totalPrice).toFixed(2)), 0) ?? 0;
+    const pendingTotal = allCarts?.reduce((sum, items) => sum + parseFloat(items.price), 0) ?? 0;
+    console.log(pendingTotal)
 
     return (
         <div>
@@ -29,7 +40,7 @@ const AdminHome = () => {
 
                             </div>
                             <div className="flex flex-col justify-center align-middle">
-                                <p className="text-3xl font-semibold leading-none">$ TODO</p>
+                                <p className="text-3xl font-semibold leading-none">{totalSales}</p>
                                 <p className="capitalize">Total Sells</p>
                             </div>
                         </div>
@@ -49,7 +60,7 @@ const AdminHome = () => {
 
                             </div>
                             <div className="flex flex-col justify-center align-middle">
-                                <p className="text-3xl font-semibold leading-none">$ 7500</p>
+                                <p className="text-3xl font-semibold leading-none">${pendingTotal}</p>
                                 <p className="capitalize">Pending Total</p>
                             </div>
                         </div>

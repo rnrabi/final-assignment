@@ -71,7 +71,7 @@ const Advertisement = () => {
                     </thead>
                     <tbody>
                         {
-                            myAdds.map(add=> <tr 
+                            myAdds?.map(add=> <tr 
                             key={add._id}
                             className="text-center"
                             >
