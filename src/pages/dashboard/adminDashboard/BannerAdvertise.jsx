@@ -1,12 +1,53 @@
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useBannerAdvertise from "../../../hooks/useBannerAdvertise";
 
 
 const BannerAdvertise = () => {
     const [allBanner] = useBannerAdvertise()
     console.log(allBanner)
+    const axiosSecure = useAxiosSecure();
 
-    const handleToggle = e=>{
+    const handleToggle = async (e, image) => {
         console.log(e.target.checked)
+        const addRemove = e.target.checked;
+        console.log(image)
+
+        if (addRemove) {
+            const { data } = await axiosSecure.put('/banner', { image })
+            console.log(data)
+            if (data.acknowledged) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `add to banner`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+            if (data.exist) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `already have been added banner`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        }
+        else {
+            const { data } = await axiosSecure.delete(`/banner?image=${image}`)
+            console.log(data)
+            if (data.deletedCount > 0) {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: `Remove from banner`,
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            }
+        }
     }
 
 
@@ -38,12 +79,12 @@ const BannerAdvertise = () => {
                                     </div>
                                 </td>
                                 <td>
-                                   {banner.name}
+                                    {banner.name}
                                 </td>
                                 <td>{banner.description}</td>
                                 <td>{banner.sellerEmail}</td>
                                 <th>
-                                    <input onChange={handleToggle} type="checkbox" className="toggle" />
+                                    <input onChange={(e) => handleToggle(e, banner.image)} type="checkbox" className="toggle" />
                                 </th>
                             </tr>)
                         }
