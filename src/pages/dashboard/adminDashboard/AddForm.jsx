@@ -22,21 +22,22 @@ const AddForm = () => {
         const category = data.category;
         const image = data.photo;
         const manufacturer = data.company;
-        const quantity = data.quantity;
-        const price = data.price;
+        const quantity = parseFloat(data.quantity);
+        const price = parseFloat(data.price);
         const dosage = data.dosage;
         const strength = data.strength;
+        const discount = parseFloat(data.discount);
         const description = data.description;
         const admin = { email: user?.email }
 
-        console.log(name, category, image, manufacturer, quantity, price, dosage, strength, description, admin)
+        console.log(name, category, image, manufacturer, quantity, price, dosage, strength,discount, description, admin)
 
-        const medicineAdd = { name, category, image, manufacturer, quantity, price, dosage, strength, description, admin }
+        const medicineAdd = { name, category, image, manufacturer, quantity, price, dosage, strength,discount, description, admin }
 
         const { data: addMedi } = await axiosSecure.post('/allMedicine', medicineAdd)
-        console.log(addMedi)
+        // console.log(addMedi)
         const { data: banner } = await axiosSecure.put('/banner', { image })
-        console.log(banner)
+        // console.log(banner)
         if (banner.acknowledged) {
             refetch()
         }
@@ -98,6 +99,13 @@ const AddForm = () => {
                                 <label htmlFor="dosage" className="text-sm">dosage</label>
                                 <input {...register("dosage", { required: true })} id="dosage" type="text" placeholder="dosage" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
                             </div>
+                            <div className="col-span-full sm:col-span-3">
+                                <label htmlFor="discount" className="text-sm">discount</label>
+                                <input {...register("discount", { required: true })} id="discount" type="number" 
+                                defaultValue={0}
+                                placeholder="discount" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                            </div>
+
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="description" className="text-sm">description</label>
                                 <input {...register("description", { required: true })} id="description" type="text" placeholder="description" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />

@@ -36,9 +36,9 @@ const ManageMedicine = () => {
         const image = res.data.data.display_url;
         const manufacturer = data.manufacturer;
         const name = data.name;
-        const price = data.price;
-        const discount = data.discount;
-        const quantity = data.quantity;
+        const price = parseFloat(data.price);
+        const discount = parseFloat(data.discount);
+        const quantity = parseFloat(data.quantity);
         const strength = data.strength;
         const seller = {
             name: user?.displayName,

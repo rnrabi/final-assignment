@@ -61,18 +61,16 @@ const ManageUser = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
-                            <th>Status</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
                             allUsers.map((user, idx) => <tr key={user._id}>
-                                <th>{idx + 1}</th>
+                                <td>{idx + 1}</td>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.roll}</td>
-                                <td>{user.status}</td>
                                 <td>
                                     <button className="btn" onClick={() => openModal(user._id)}>Update</button>
                                 </td>

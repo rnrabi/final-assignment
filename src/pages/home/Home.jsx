@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet-async";
 import useAllMedicine from "../../hooks/useAllMedicine";
 import CategoryCart from "./homeComponent/CategoryCart";
 import Slider from "./homeComponent/Slider";
+import Discount from "./homeComponent/Discount";
 
 
 const Home = () => {
@@ -40,6 +41,9 @@ const Home = () => {
                         })
                     }
                 </div>
+            </div>
+            <div>
+                <Discount></Discount>
             </div>
         </div>
     );
