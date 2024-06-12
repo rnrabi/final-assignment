@@ -24,6 +24,7 @@ import SellerHome from "../pages/dashboard/sellerDashboard/SellerHome";
 import PaymentHistory from "../pages/dashboard/sellerDashboard/PaymentHistory";
 import SellerReport from "../pages/dashboard/adminDashboard/SellerReport";
 import UserPaymentHistory from "../pages/dashboard/userDashbaord/UserPaymentHistory";
+import AdminPamentHistory from "../pages/dashboard/adminDashboard/AdminPamentHistory";
 
 export const router = createBrowserRouter([
     {
@@ -112,6 +113,10 @@ export const router = createBrowserRouter([
             {
                 path:'userPaymentHistories',
                 element:<UserPaymentHistory></UserPaymentHistory>
+            },
+            {
+                path:'paymentManagement',
+                element:<AdminPamentHistory></AdminPamentHistory>
             }
         ]
     }
