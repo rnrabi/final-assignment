@@ -3,10 +3,12 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAllMedicine from "../../../hooks/useAllMedicine";
 import useAuth from "../../../hooks/useAuth";
+// import useSlider from "../../../hooks/useSlider";
 
 const AddForm = () => {
     const { user } = useAuth()
     const [, refetch] = useAllMedicine()
+    // const [image, refetch] = useSlider()
     const axiosSecure = useAxiosSecure()
     const {
         register,
@@ -33,6 +35,11 @@ const AddForm = () => {
 
         const { data: addMedi } = await axiosSecure.post('/allMedicine', medicineAdd)
         console.log(addMedi)
+        const { data: banner } = await axiosSecure.put('/banner', { image })
+        console.log(banner)
+        if (banner.acknowledged) {
+            refetch()
+        }
 
         if (addMedi.acknowledged) {
             Swal.fire({

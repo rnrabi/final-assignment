@@ -1,6 +1,32 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useAuth from "../../../hooks/useAuth";
 
 
 const SellerHome = () => {
+    const { user } = useAuth()
+    const axiosPublic = useAxiosPublic()
+    const { data: sellerHome } = useQuery({
+        queryKey: ['sellerHome'],
+        queryFn: async () => {
+            const { data } = await axiosPublic.get('/bookingProducts')
+            return data;
+        }
+    })
+    const { data: sellerCart } = useQuery({
+        queryKey: ['sellercart'],
+        queryFn: async () => {
+            const { data } = await axiosPublic.get(`/seller/${user?.email}`)
+            return data;
+        }
+    })
+    console.log(sellerHome)
+    const uniqueSeller = sellerHome?.filter(seller => seller.email == user?.email)
+    console.log(uniqueSeller)
+    const totalPaid = uniqueSeller?.reduce((sum, items) => sum + parseFloat(items.price), 0)
+    const pendingTotal = sellerCart?.reduce((sum, items) => sum + parseFloat(items.price), 0)
+
+
     return (
         <div>
             <section className="p-6 my-6 dark:bg-gray-100 dark:text-gray-800">
@@ -11,7 +37,7 @@ const SellerHome = () => {
 
                         </div>
                         <div className="flex flex-col justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">$ TODO</p>
+                            <p className="text-3xl font-semibold leading-none">{uniqueSeller?.length}</p>
                             <p className="capitalize">Total Sells</p>
                         </div>
                     </div>
@@ -21,7 +47,7 @@ const SellerHome = () => {
 
                         </div>
                         <div className="flex flex-col justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">$ 120</p>
+                            <p className="text-3xl font-semibold leading-none">$ {totalPaid}</p>
                             <p className="capitalize">Paid Total</p>
                         </div>
                     </div>
@@ -31,7 +57,7 @@ const SellerHome = () => {
 
                         </div>
                         <div className="flex flex-col justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">$ 7500</p>
+                            <p className="text-3xl font-semibold leading-none">$ {pendingTotal}</p>
                             <p className="capitalize">Pending Total</p>
                         </div>
                     </div>

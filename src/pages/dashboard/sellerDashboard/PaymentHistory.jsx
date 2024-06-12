@@ -1,25 +1,44 @@
+
+
 import { useQuery } from "@tanstack/react-query";
-import useAuth from "../../../hooks/useAuth";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import useCustomerDetails from "../../../hooks/useCustomerDetails";
 
 
 const PaymentHistory = () => {
-    const { user } = useAuth()
+
     const axiosPublic = useAxiosPublic()
-    const { data: sellers } = useQuery({
-        queryKey: [user?.email, 'sellerCarts'],
+    const [sellers] = useCustomerDetails()
+    console.log(sellers)
+
+
+    // console.log(sellers && sellers[0].buyer.email)
+    const customerEmail = sellers && sellers[0]?.buyer?.email;
+    console.log(customerEmail)
+    const { data: customerDetails } = useQuery({
+        queryKey: ['customer'],
+        enabled: !!customerEmail,
         queryFn: async () => {
-            const res = await axiosPublic.get(`/seller/${user?.email}`)
-            return res.data;
+            const { data } = await axiosPublic.get(`/booking/${customerEmail}`)
+            return data;
         }
     })
-    console.log(sellers)
+
+    console.log(customerDetails)
+
+    // const customer = async () => {
+    //     const { data } = await axiosPublic.get(`/booking/${customerEmail}`)
+    //     return data;
+    // }
+    // const result = customer()
+    // console.log({result})
+
 
 
     return (
         <div>
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
-                <h2 className="mb-4 text-2xl font-semibold leading-tight">Invoices</h2>
+                <h2 className="mb-4 text-2xl font-semibold leading-tight text-center">Payment History</h2>
                 <div className="overflow-x-auto">
                     <table className="min-w-full text-xs">
                         <colgroup>
@@ -32,7 +51,7 @@ const PaymentHistory = () => {
                         </colgroup>
                         <thead className="dark:bg-gray-300">
                             <tr className="text-center">
-                                <th className="p-3">No</th>
+                                <th className="p-3">Transaction ID</th>
                                 <th className="p-3">Client</th>
                                 <th className="p-3">Amount</th>
                                 <th className="p-3">Status</th>
@@ -41,19 +60,19 @@ const PaymentHistory = () => {
                         <tbody>
 
                             {
-                                sellers?.map((seller , idx) => <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50 text-center" key={seller._id}>
+                                customerDetails?.map((customer) => <tr className="border-b border-opacity-20 dark:border-gray-300 dark:bg-gray-50 text-center" key={customer._id}>
                                     <td className="p-3">
-                                        <p>{idx+1}</p>
+                                        <p>{customer.transactionId}</p>
                                     </td>
                                     <td className="p-3">
-                                        <p>{seller.buyer.name || 'unknown'}</p>
+                                        <p>{customer.cutomar?.name || 'unknown'}</p>
                                     </td>
                                     <td className="p-3">
-                                        <p>$ {seller.price}</p>
+                                        <p>$ {customer.totalPrice}</p>
                                     </td>
                                     <td className="p-3">
                                         <span className="px-3 py-1 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">
-                                            <span>{seller.status}</span>
+                                            <span>{customer?.status}</span>
                                         </span>
                                     </td>
                                 </tr>)

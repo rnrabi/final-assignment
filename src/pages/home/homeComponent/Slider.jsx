@@ -8,20 +8,20 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { useQuery } from '@tanstack/react-query';
-import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import useSlider from '../../../hooks/useSlider';
 
 const Slider = () => {
-    const axiosPublic = useAxiosPublic()
-    const { data: image } = useQuery({
-        queryKey: ['image'],
-        queryFn: async () => {
-            const { data } = await axiosPublic.get('/allImage')
-            return data;
-        }
-    })
+    // const axiosPublic = useAxiosPublic()
+    // const { data: image } = useQuery({
+    //     queryKey: ['image'],
+    //     queryFn: async () => {
+    //         const { data } = await axiosPublic.get('/banner')
+    //         return data;
+    //     }
+    // })
+    const [image] = useSlider()
     console.log(image)
-    
+
     const slidesPerView = 1;
     const slidesPerGroup = 1;
     const enableLoop = image?.length >= (slidesPerView + slidesPerGroup);
@@ -45,7 +45,7 @@ const Slider = () => {
                 className="mySwiper z-0"
             >
                 {
-                    image?.map((img, idx) => <SwiperSlide key={idx}> <img className='h-[500px] w-full' src={img} alt="" /> </SwiperSlide>)
+                    image?.map((img, idx) => <SwiperSlide key={idx}> <img className='h-[500px] w-full' src={img.image} alt="" /> </SwiperSlide>)
                 }
 
             </Swiper>

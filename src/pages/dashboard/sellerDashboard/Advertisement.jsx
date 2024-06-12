@@ -19,7 +19,7 @@ const Advertisement = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        console.log(data)
+        // console.log(data)
         const name = data.name;
         // ok upload image in image bb
         const imageFile = data.image[0];
@@ -63,7 +63,7 @@ const Advertisement = () => {
                 <table className="table">
                     {/* head */}
                     <thead>
-                        <tr>
+                        <tr className="text-center text-lg">
                             <th>Image</th>
                             <th>Name</th>
                             <th>Status</th>
@@ -76,9 +76,9 @@ const Advertisement = () => {
                             className="text-center"
                             >
                                 <td>
-                                    <div className="flex items-center gap-3">
+                                    <div className="flex items-center justify-center gap-3">
                                         <div className="avatar">
-                                            <div className="mask mask-squircle w-12 h-12">
+                                            <div className="mask mask-squircle w-12 h-12 mx-auto">
                                                 <img src={add.image} alt="Avatar Tailwind CSS Component" />
                                             </div>
                                         </div>
