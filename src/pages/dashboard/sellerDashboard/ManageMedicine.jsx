@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import useAllMedicineEmail from "../../../hooks/useAllMedicineEmail";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -88,6 +89,9 @@ const ManageMedicine = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | ManageMedicine</title>
+            </Helmet>
             <h2 className="text-2xl text-center font-bold my-10">My added medicine</h2>
 
             <div className="text-right"><button onClick={() => document.getElementById('my_modal_3').showModal()} className="btn bg-gray-400">Add Medicine</button></div>
@@ -225,9 +229,9 @@ const ManageMedicine = () => {
                                             <label className="label">
                                                 <span className="label-text">Discount</span>
                                             </label>
-                                            <input  {...register("discount", { required: true })} type="number" placeholder="discount" 
-                                            defaultValue={0}
-                                            className="input input-bordered" required />
+                                            <input  {...register("discount", { required: true })} type="number" placeholder="discount"
+                                                defaultValue={0}
+                                                className="input input-bordered" required />
                                         </div>
                                         <div className="mb-5">
                                             <div className="form-control">

@@ -1,6 +1,7 @@
 import { usePDF, Document, Page, Text } from '@react-pdf/renderer';
 import InvoiceMemo from './InvoiceMemo';
 import InvoiceDesplay from './InvoiceDesplay';
+import { Helmet } from 'react-helmet-async';
 
 
 
@@ -21,6 +22,9 @@ const Invoice = () => {
 
     return (
         <>
+         <Helmet>
+                <title>MediGlam | Invoice</title>
+            </Helmet>
             <InvoiceDesplay></InvoiceDesplay>
             
             <a href={instance.url} download="test.pdf">

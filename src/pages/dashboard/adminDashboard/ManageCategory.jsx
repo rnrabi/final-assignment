@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import AddForm from "./AddForm";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const ManageCategory = () => {
@@ -20,7 +21,7 @@ const ManageCategory = () => {
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
             confirmButtonText: "Yes, delete it!"
-        }).then(async(result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
 
                 const { data } = await axiosSecure.delete(`/allMedicine/${deleteId}`)
@@ -37,12 +38,15 @@ const ManageCategory = () => {
                 }
             }
         });
-  
+
     }
 
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | ManageCategory</title>
+            </Helmet>
             <h2 className="text-center text-xl my-10 font-bold">All Category OF Medicine</h2>
             <div className="text-end">
                 <button className="btn btn-outline" onClick={() => document.getElementById('my_modal_1').showModal()}>Add Category</button>

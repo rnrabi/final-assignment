@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import useAllMedicine from "../../hooks/useAllMedicine";
 import CategoryCart from "./homeComponent/CategoryCart";
 import Slider from "./homeComponent/Slider";
@@ -11,6 +12,9 @@ const Home = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>MediGlam | Home</title>
+            </Helmet>
             <h2>This is home page</h2>
             {/* slider section */}
             <div className="w-full md:w-11/12 mx-auto">

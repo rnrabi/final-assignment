@@ -4,6 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import axios from "axios";
 import Swal from "sweetalert2";
 import useMyAdvertise from "../../../hooks/useMyAdvertise";
+import { Helmet } from "react-helmet-async";
 
 
 const Advertisement = () => {
@@ -54,6 +55,9 @@ const Advertisement = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | Advertisement</title>
+            </Helmet>
             <h2 className="text-center text-2xl font-bold my-8">My advertisement medicine</h2>
 
             <div className="text-right"><button className="btn" onClick={() => document.getElementById('my_modal_2').showModal()}>Add advertisement</button></div>
@@ -71,9 +75,9 @@ const Advertisement = () => {
                     </thead>
                     <tbody>
                         {
-                            myAdds?.map(add=> <tr 
-                            key={add._id}
-                            className="text-center"
+                            myAdds?.map(add => <tr
+                                key={add._id}
+                                className="text-center"
                             >
                                 <td>
                                     <div className="flex items-center justify-center gap-3">
@@ -85,7 +89,7 @@ const Advertisement = () => {
                                     </div>
                                 </td>
                                 <td>
-                                   {add.name}
+                                    {add.name}
                                 </td>
                                 <td className="text-slate-400">{add.status}</td>
                                 {/* <th>
@@ -93,7 +97,7 @@ const Advertisement = () => {
                                 </th> */}
                             </tr>)
                         }
-                       
+
                     </tbody>
                 </table>
             </div>

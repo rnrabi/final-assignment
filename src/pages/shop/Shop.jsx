@@ -5,6 +5,7 @@ import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useMyCarts from "../../hooks/useMyCarts";
+import { Helmet } from "react-helmet-async";
 
 
 const Shop = () => {
@@ -64,6 +65,9 @@ const Shop = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>MediGlam | Shop</title>
+            </Helmet>
             <h2 className="text-center text-2xl font-bold my-6">Our All Medicine</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">

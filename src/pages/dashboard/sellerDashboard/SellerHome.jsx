@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useAuth from "../../../hooks/useAuth";
+import { Helmet } from "react-helmet-async";
 
 
 const SellerHome = () => {
@@ -29,6 +30,9 @@ const SellerHome = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | SellerHome</title>
+            </Helmet>
             <section className="p-6 my-6 dark:bg-gray-100 dark:text-gray-800">
                 <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-4">
 

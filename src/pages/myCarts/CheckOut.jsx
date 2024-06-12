@@ -5,6 +5,7 @@ import CheckoutForm from './CheckoutForm';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet-async';
 
 const CheckOut = () => {
     const { user } = useAuth()
@@ -29,6 +30,9 @@ const CheckOut = () => {
     const stripePromise = loadStripe(`${import.meta.env.VITE_stripe_api_key}`);
     return (
         <div>
+             <Helmet>
+                <title>MediGlam | Checkout</title>
+            </Helmet>
             <div className="w-screen md:mt-20">
 
                 <div className="mx-auto grid max-w-screen-lg px-6 pb-20">

@@ -1,5 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import useRoll from "../../hooks/useRoll";
+import { Helmet } from "react-helmet-async";
 
 
 const Dashboard = () => {
@@ -8,6 +9,9 @@ const Dashboard = () => {
   if (!roll?.roll && isLoading) return <span>Spinner .... </span>
   return (
     <div>
+      <Helmet>
+        <title>Dashboard</title>
+      </Helmet>
       <div className="flex justify-between">
         <div className="w-64 min-h-screen bg-slate-700">
 

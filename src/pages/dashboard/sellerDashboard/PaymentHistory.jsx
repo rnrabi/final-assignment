@@ -3,6 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import useCustomerDetails from "../../../hooks/useCustomerDetails";
+import { Helmet } from "react-helmet-async";
 
 
 const PaymentHistory = () => {
@@ -37,6 +38,9 @@ const PaymentHistory = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | PaymentHistory</title>
+            </Helmet>
             <div className="container p-2 mx-auto sm:p-4 dark:text-gray-800">
                 <h2 className="mb-4 text-2xl font-semibold leading-tight text-center">Payment History</h2>
                 <div className="overflow-x-auto">

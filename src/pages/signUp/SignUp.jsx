@@ -5,6 +5,7 @@ import { updateProfile } from "firebase/auth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { Helmet } from "react-helmet-async";
 
 
 const SignUp = () => {
@@ -105,6 +106,9 @@ const SignUp = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>MediGlam | Register</title>
+            </Helmet>
             <div className="w-full mx-auto max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
                 <h2 className="mb-3 text-3xl font-semibold text-center">Please Sign Up</h2>
                 <p className="text-sm text-center dark:text-gray-600">Have an account?

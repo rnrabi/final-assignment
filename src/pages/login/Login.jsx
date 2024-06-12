@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 
 
@@ -71,6 +72,9 @@ const Login = () => {
 
     return (
         <div>
+             <Helmet>
+                <title>MediGlam | Login</title>
+            </Helmet>
             <div className="w-full mx-auto max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
                 <h2 className="mb-3 text-3xl font-semibold text-center">Please Login</h2>
                 <p className="text-sm text-center dark:text-gray-600">Do not have account?

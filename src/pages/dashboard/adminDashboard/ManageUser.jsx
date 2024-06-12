@@ -2,6 +2,7 @@ import { useState } from "react";
 import useUsers from "../../../hooks/useUsers";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const ManageUser = () => {
@@ -47,6 +48,9 @@ const ManageUser = () => {
     if (isLoading) return <p>Loading.....</p>
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | ManageUser</title>
+            </Helmet>
             <h2 className="text-center text-2xl font-bold">All users here</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">

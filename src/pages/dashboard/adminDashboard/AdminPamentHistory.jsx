@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const AdminPamentHistory = () => {
@@ -20,7 +21,7 @@ const AdminPamentHistory = () => {
         console.log(id)
         const { data } = await axiosSecure.put(`/bookingUpdate/${id}`)
         console.log(data)
-        if(data.modifiedCount>0){
+        if (data.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",
                 icon: "success",
@@ -35,6 +36,9 @@ const AdminPamentHistory = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | PaymentHistory</title>
+            </Helmet>
             <h2>This is admin payment history</h2>
             <div className="overflow-x-auto">
                 <table className="table">

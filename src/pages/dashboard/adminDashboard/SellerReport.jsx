@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const SellerReport = () => {
@@ -31,6 +32,9 @@ const SellerReport = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | SellerReport</title>
+            </Helmet>
             <h2 className="text-center text-bold text-2xl my-6">All Seller Report</h2>
             <div className="overflow-x-auto">
                 <table className="table">

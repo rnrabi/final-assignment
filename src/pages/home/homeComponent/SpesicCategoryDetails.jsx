@@ -6,6 +6,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import useAuth from "../../../hooks/useAuth";
 import useMyCarts from "../../../hooks/useMyCarts";
+import { Helmet } from "react-helmet-async";
 
 
 const SpesicCategoryDetails = () => {
@@ -67,6 +68,9 @@ const SpesicCategoryDetails = () => {
     if (!specificCategory) return <span>loading .... </span>
     return (
         <div>
+             <Helmet>
+                <title>MediGlam | Category</title>
+            </Helmet>
             <h2 className="text-center text-2xl font-bold my-6">Here all <span className="text-slate-400">{category}</span> categories</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">

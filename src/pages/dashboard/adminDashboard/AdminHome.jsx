@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const AdminHome = () => {
@@ -31,6 +32,9 @@ const AdminHome = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Dashboard | Home</title>
+            </Helmet>
             <section>
                 <section className="p-6 my-6 dark:bg-gray-100 dark:text-gray-800">
                     <div className="container grid grid-cols-1 gap-6 mx-auto sm:grid-cols-2 xl:grid-cols-4">
