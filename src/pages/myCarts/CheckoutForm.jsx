@@ -84,15 +84,18 @@ const CheckoutForm = ({ price }) => {
                     email: user?.email
                 },
 
-                status: 'confirm'
+                status: 'confirm',
+                adminStatus:'pending',
+                cartId:myCarts.map(cartId=>cartId._id)
 
             }
             // save in database
             const { data } = await axiosSecure.post('/booking', paymentInfo)
             console.log(data)
+
             const res = await axiosSecure.patch(`/updateCartStatus/${user?.email}`)
             console.log(res.data)
-
+         
             console.log('success payment', paymentInfo)
             navigate('/invoice')
         }

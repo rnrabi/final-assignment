@@ -5,7 +5,7 @@ import useRoll from "../../hooks/useRoll";
 const Dashboard = () => {
   const { roll, isLoading } = useRoll()
   console.log(roll?.roll)
-  if(!roll?.roll && isLoading) return <span>Spinner .... </span>
+  if (!roll?.roll && isLoading) return <span>Spinner .... </span>
   return (
     <div>
       <div className="flex justify-between">
@@ -52,8 +52,6 @@ const Dashboard = () => {
           {
             roll?.roll === 'user' && <ul className="text-center text-xl">
               <li className="bg-slate-500 p-2 rounded-lg mb-2"><NavLink to='/dashboard/userPaymentHistories' className={({ isActive }) => isActive ? 'font-bold underline  w-full  text-slate-200' : ''}>Payment Histories</NavLink></li>
-
-              <li className="bg-slate-500 p-2 rounded-lg mb-2"><NavLink to='/dashboard/userQueries' className={({ isActive }) => isActive ? 'font-bold underline  w-full  text-slate-200' : ''}>My Queries</NavLink></li>
             </ul>
           }
           {/* user dashboard end */}

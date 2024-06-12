@@ -24,7 +24,7 @@ const AdminHome = () => {
 
     // console.log(adHome)
     // console.log(allCarts)
-    const totalSales = adHome?.reduce((sum, sel) => sum + sel.products.length, 0) ?? 0;
+    const totalSales = adHome?.reduce((sum, sel) => sum + sel.products?.length, 0) ?? 0;
     const priceInTotal = adHome?.reduce((sum, item) => sum + parseFloat(parseFloat(item.totalPrice).toFixed(2)), 0) ?? 0;
     const pendingTotal = allCarts?.reduce((sum, items) => sum + parseFloat(items.price), 0) ?? 0;
     console.log(pendingTotal)
