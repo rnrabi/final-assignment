@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
-    const { logInUser, googleSignUp } = useAuth()
+    const { logInUser, googleSignUp , twitterSignUp} = useAuth()
     const axiosPublic = useAxiosPublic()
     const location = useLocation()
     const navigate = useNavigate()
@@ -67,7 +67,19 @@ const Login = () => {
     }
     // Twitter log in 
     const handleTwitterLogIn = () => {
-        console.log('TODO twitter log in set korte hobe')
+        twitterSignUp()
+        .then(result => {
+            console.log(result.user)
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "You have successfully log in",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            navigate('/')
+        })
+        .catch(err => console.log(err.message))
     }
 
     return (
