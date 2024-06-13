@@ -85,11 +85,11 @@ const AddForm = () => {
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="price" className="text-sm">price</label>
-                                <input {...register("price", { required: true })} id="price" type="text" placeholder="price" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                <input {...register("price", { required: true })} id="price" type="number" placeholder="price" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="quantity" className="text-sm">quantity</label>
-                                <input {...register("quantity", { required: true })} id="quantity" type="text" placeholder="quantity" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                <input {...register("quantity", { required: true })} id="quantity" type="number" placeholder="quantity" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="strength" className="text-sm">strength</label>

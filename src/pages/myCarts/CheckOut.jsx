@@ -4,30 +4,31 @@ import { Elements } from "@stripe/react-stripe-js";
 import CheckoutForm from './CheckoutForm';
 import { useQuery } from '@tanstack/react-query';
 import useAuth from '../../hooks/useAuth';
-import useAxiosPublic from '../../hooks/useAxiosPublic';
+import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { Helmet } from 'react-helmet-async';
 
 const CheckOut = () => {
     const { user } = useAuth()
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
 
     const { data: checkout } = useQuery({
         queryKey: ['checkout', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const { data } = await axiosPublic.get(`/myCartsCheckout/${user?.email}`)
+            const { data } = await axiosSecure.get(`/myCartsCheckout/${user?.email}`)
             return data;
         }
     })
     console.log(checkout)
 
     const totalPrice = checkout?.total
-    // console.log(totalPrice)
+    console.log(totalPrice)
 
     if (!totalPrice) {
         return <span className="loading loading-spinner loading-lg"></span>
     }
     const stripePromise = loadStripe(`${import.meta.env.VITE_stripe_api_key}`);
+
     return (
         <div>
              <Helmet>

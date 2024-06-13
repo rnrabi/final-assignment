@@ -66,7 +66,7 @@ const ManageUser = () => {
                     </thead>
                     <tbody>
                         {
-                            allUsers.map((user, idx) => <tr key={user._id}>
+                            allUsers?.map((user, idx) => <tr key={user._id}>
                                 <td>{idx + 1}</td>
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>

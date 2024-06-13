@@ -1,15 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../hooks/useAuth";
-import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 
 const NaveModal = () => {
     const { user } = useAuth()
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const { data: logInUser } = useQuery({
         queryKey: ['logInUser', user?.email],
         queryFn: async () => {
-            const { data } = await axiosPublic.get(`/user/${user?.email}`)
+            const { data } = await axiosSecure.get(`/user/${user?.email}`)
             return data;
         }
     })

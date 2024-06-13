@@ -31,8 +31,8 @@ const Shop = () => {
         handleDetails(id)
         const name = singleMedi.name;
         const email = user?.email;
-        const price = singleMedi.price;
-        const quantity = singleMedi.quantity;
+        const price = parseFloat(singleMedi.price);
+        const quantity = parseInt(singleMedi.quantity);
         const seller = singleMedi.seller;
         // TODO : image set korte hobe
         const category = singleMedi.category;
@@ -65,7 +65,7 @@ const Shop = () => {
 
     return (
         <div>
-             <Helmet>
+            <Helmet>
                 <title>MediGlam | Shop</title>
             </Helmet>
             <h2 className="text-center text-2xl font-bold my-6">Our All Medicine</h2>

@@ -12,7 +12,7 @@ const ManageCategory = () => {
     console.log(allMedicine)
     const axiosSecure = useAxiosSecure()
 
-    const handleDelete = async (deleteId, medicine) => {
+    const handleDelete = async (deleteId, image, medicine) => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -26,6 +26,10 @@ const ManageCategory = () => {
 
                 const { data } = await axiosSecure.delete(`/allMedicine/${deleteId}`)
                 console.log(data)
+
+                const { data: bannerImageDelete } = await axiosSecure.delete(`/banner?image=${image}`)
+                console.log(bannerImageDelete)
+
                 if (data.deletedCount > 0) {
                     Swal.fire({
                         position: "top-end",
@@ -74,7 +78,7 @@ const ManageCategory = () => {
                                 <td className="flex justify-center gap-9">
                                     <Link to={`/dashboard/updateManage/${medicine._id}`}><button className="btn">Update</button></Link>
 
-                                    <button onClick={() => handleDelete(medicine._id, medicine)} className="btn" ><AiTwotoneDelete className="text-xl text-red-600"></AiTwotoneDelete></button>
+                                    <button onClick={() => handleDelete(medicine._id, medicine.image, medicine)} className="btn" ><AiTwotoneDelete className="text-xl text-red-600"></AiTwotoneDelete></button>
                                 </td>
                             </tr>)
                         }

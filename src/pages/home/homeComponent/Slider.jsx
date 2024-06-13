@@ -11,14 +11,6 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import useSlider from '../../../hooks/useSlider';
 
 const Slider = () => {
-    // const axiosPublic = useAxiosPublic()
-    // const { data: image } = useQuery({
-    //     queryKey: ['image'],
-    //     queryFn: async () => {
-    //         const { data } = await axiosPublic.get('/banner')
-    //         return data;
-    //     }
-    // })
     const [image] = useSlider()
     console.log(image)
 

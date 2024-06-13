@@ -68,55 +68,55 @@ export const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: 'adminHome',
-                element: <AdminHome></AdminHome>
+                element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute>
             },
             {
                 path: 'manageUsers',
-                element: <ManageUser></ManageUser>
+                element: <PrivateRoute><ManageUser></ManageUser></PrivateRoute>
             },
             {
                 path: 'manageCategory',
-                element: <ManageCategory></ManageCategory>
+                element: <PrivateRoute><ManageCategory></ManageCategory></PrivateRoute>
             },
             {
                 path: 'updateManage/:id',
-                element: <UpDateMangeCatery></UpDateMangeCatery>
+                element: <PrivateRoute><UpDateMangeCatery></UpDateMangeCatery></PrivateRoute>
             },
             {
                 path:'sellerMedicine',
-                element:<ManageMedicine></ManageMedicine>
+                element:<PrivateRoute><ManageMedicine></ManageMedicine></PrivateRoute>
             },
             {
                 path:'sellerAdvertisement',
-                element:<Advertisement></Advertisement>
+                element:<PrivateRoute><Advertisement></Advertisement></PrivateRoute>
             },
             {
                 path:'bannerAdvertise',
-                element:<BannerAdvertise></BannerAdvertise>
+                element:<PrivateRoute><BannerAdvertise></BannerAdvertise></PrivateRoute>
             },
             {
                 path:'sellerHome',
-                element:<SellerHome></SellerHome>
+                element:<PrivateRoute><SellerHome></SellerHome></PrivateRoute>
             },
             {
                 path:'sellerPaymentHistory',
-                element:<PaymentHistory></PaymentHistory>
+                element:<PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
             },
             {
                 path:'salesReport',
-                element:<SellerReport></SellerReport>
+                element:<PrivateRoute><SellerReport></SellerReport></PrivateRoute>
             },
             {
                 path:'userPaymentHistories',
-                element:<UserPaymentHistory></UserPaymentHistory>
+                element:<PrivateRoute><UserPaymentHistory></UserPaymentHistory></PrivateRoute>
             },
             {
                 path:'paymentManagement',
-                element:<AdminPamentHistory></AdminPamentHistory>
+                element:<PrivateRoute><AdminPamentHistory></AdminPamentHistory></PrivateRoute>
             }
         ]
     }
