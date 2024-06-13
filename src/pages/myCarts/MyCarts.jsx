@@ -2,7 +2,7 @@ import useMyCarts from "../../hooks/useMyCarts";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
 import { useState } from "react";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link} from "react-router-dom";
 import { Helmet } from "react-helmet-async";
@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet-async";
 const MyCarts = () => {
     const [myCarts, refetch] = useMyCarts()
     console.log(myCarts)
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const [quantity, setQuantity] = useState(0)
 
     const handleIncrise = () => {
@@ -20,7 +20,7 @@ const MyCarts = () => {
     }
 
     const handleRemove = async (id) => {
-        const { data } = await axiosPublic.delete(`/myCarts/${id}`)
+        const { data } = await axiosSecure.delete(`/myCarts/${id}`)
         console.log(data)
         if (data.deletedCount > 0) {
             Swal.fire({

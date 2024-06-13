@@ -2,6 +2,7 @@ import { usePDF, Document, Page, Text } from '@react-pdf/renderer';
 import InvoiceMemo from './InvoiceMemo';
 import InvoiceDesplay from './InvoiceDesplay';
 import { Helmet } from 'react-helmet-async';
+import { FaDownload } from "react-icons/fa6";
 
 
 
@@ -28,7 +29,7 @@ const Invoice = () => {
             <InvoiceDesplay></InvoiceDesplay>
             
             <a href={instance.url} download="test.pdf">
-                <button className='btn'>Download</button>
+                <button className='btn'><FaDownload></FaDownload> Download</button>
             </a>
         </>
     );
