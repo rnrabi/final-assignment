@@ -89,7 +89,7 @@ const SignUp = () => {
     // Twitter sign in
     const handleTwitterLogIn = () => {
         twitterSignUp()
-            .then(result => {
+            .then(async result => {
                 console.log(result.user)
                 Swal.fire({
                     position: "top-end",
@@ -99,6 +99,18 @@ const SignUp = () => {
                     timer: 1500
                 });
                 navigate('/')
+
+                const name = result.user.displayName;
+                const email = result.user.email;
+                // const password = data.password;
+                const roll = 'User';
+                const image = result.user.photoURL;
+                // console.log(name, email, roll, image)
+
+                const userInfo = { name, email, roll, image}
+                const response = await axiosPublic.post('/users', userInfo)
+                console.log(response.data)
+
             })
             .catch(err => console.log(err.message))
     }

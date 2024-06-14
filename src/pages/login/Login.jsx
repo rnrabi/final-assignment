@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet-async";
 
 
 const Login = () => {
-    const { logInUser, googleSignUp , twitterSignUp} = useAuth()
+    const { logInUser, googleSignUp, twitterSignUp } = useAuth()
     const axiosPublic = useAxiosPublic()
     const location = useLocation()
     const navigate = useNavigate()
@@ -58,7 +58,7 @@ const Login = () => {
                 const image = result.user.photoURL;
                 // console.log(name, email, roll, image)
 
-                const userInfo = { name, email, roll, image}
+                const userInfo = { name, email, roll, image }
                 const response = await axiosPublic.post('/users', userInfo)
                 console.log(response.data)
 
@@ -68,23 +68,34 @@ const Login = () => {
     // Twitter log in 
     const handleTwitterLogIn = () => {
         twitterSignUp()
-        .then(result => {
-            console.log(result.user)
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "You have successfully log in",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            navigate('/')
-        })
-        .catch(err => console.log(err.message))
+            .then(async result => {
+                console.log(result.user)
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "You have successfully log in",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/')
+                
+                const name = result.user.displayName;
+                const email = result.user.email;
+                // const password = data.password;
+                const roll = 'User';
+                const image = result.user.photoURL;
+                // console.log(name, email, roll, image)
+
+                const userInfo = { name, email, roll, image }
+                const response = await axiosPublic.post('/users', userInfo)
+                console.log(response.data)
+            })
+            .catch(err => console.log(err.message))
     }
 
     return (
         <div>
-             <Helmet>
+            <Helmet>
                 <title>MediGlam | Login</title>
             </Helmet>
             <div className="w-full mx-auto max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800">
