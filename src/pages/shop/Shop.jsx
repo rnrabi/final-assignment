@@ -34,7 +34,6 @@ const Shop = () => {
         const price = parseFloat(singleMedi.price);
         const quantity = parseInt(singleMedi.quantity);
         const seller = singleMedi.seller;
-        // TODO : image set korte hobe
         const category = singleMedi.category;
         const description = singleMedi.description;
         const dosage = singleMedi.dosage;
@@ -71,7 +70,6 @@ const Shop = () => {
             <h2 className="text-center text-2xl font-bold my-6">Our All Medicine</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>Serial</th>
@@ -129,7 +127,6 @@ const Shop = () => {
                                 <h2>Strength:{singleMedi.strength}</h2>
                             </div>
                         </div>
-                        <button onClick={handleAddToCart} type="button" className="btn btn-outline px-8 py-3 font-semibold rounded-full dark:bg-violet-600 dark:text-gray-50">Select</button>
                     </div>
                 </div>
             </dialog>

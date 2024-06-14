@@ -27,14 +27,6 @@ const PaymentHistory = () => {
 
     console.log(customerDetails)
 
-    // const customer = async () => {
-    //     const { data } = await axiosPublic.get(`/booking/${customerEmail}`)
-    //     return data;
-    // }
-    // const result = customer()
-    // console.log({result})
-
-
 
     return (
         <div>

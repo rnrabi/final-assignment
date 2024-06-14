@@ -39,7 +39,7 @@ const AdminPamentHistory = () => {
             <Helmet>
                 <title>Dashboard | PaymentHistory</title>
             </Helmet>
-            <h2>This is admin payment history</h2>
+            <h2 className="text-center text-2xl font-bold my-5">Payment history</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

@@ -64,7 +64,7 @@ const MyCarts = () => {
                     </thead>
                     <tbody>
                         {
-                            myCarts.map((myCart, idx) => <tr key={myCart._id}>
+                            myCarts?.map((myCart, idx) => <tr key={myCart._id}>
                                 <th>{idx + 1}</th>
                                 <td>{myCart.name}</td>
                                 <td>{myCart.company}</td>

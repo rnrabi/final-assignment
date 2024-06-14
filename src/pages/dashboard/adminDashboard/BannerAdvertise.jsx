@@ -11,7 +11,7 @@ const BannerAdvertise = () => {
     const handleToggle = async (e, image) => {
         console.log(e.target.checked)
         const addRemove = e.target.checked;
-        console.log(image)
+        // console.log(image)
 
         if (addRemove) {
             const { data } = await axiosSecure.put('/banner', { image })
@@ -53,10 +53,9 @@ const BannerAdvertise = () => {
 
     return (
         <div>
-            <h2>This is banner advertise</h2>
+            <h2 className="text-center font-bold text-2xl my-5">Banner advertisement</h2>
             <div className="overflow-x-auto">
                 <table className="table">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>Image</th>

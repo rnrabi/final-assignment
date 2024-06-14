@@ -19,10 +19,10 @@ const CheckOut = () => {
             return data;
         }
     })
-    console.log(checkout)
+    // console.log(checkout)
 
-    const totalPrice = checkout?.total
-    console.log(totalPrice)
+    const totalPrice = checkout?.total.toFixed(2)
+    // console.log(totalPrice)
 
     if (!totalPrice) {
         return <span className="loading loading-spinner loading-lg"></span>
@@ -31,7 +31,7 @@ const CheckOut = () => {
 
     return (
         <div>
-             <Helmet>
+            <Helmet>
                 <title>MediGlam | Checkout</title>
             </Helmet>
             <div className="w-screen md:mt-20">
@@ -45,7 +45,7 @@ const CheckOut = () => {
                                 <span className="absolute right-4 top-1/2 box-content block h-3 w-3 -translate-y-1/2 rounded-full border-8 border-gray-300 bg-white peer-checked:border-emerald-400"></span>
                                 <label className="flex h-full cursor-pointer flex-col rounded-lg p-4 shadow-lg shadow-slate-100 peer-checked:bg-emerald-600 peer-checked:text-white">
                                     <span className="mt-2- font-medium">Total Price</span>
-                                    <span className="text-xs uppercase">${checkout?.total}</span>
+                                    <span className="text-xs uppercase">${totalPrice}</span>
                                 </label>
                             </div>
 

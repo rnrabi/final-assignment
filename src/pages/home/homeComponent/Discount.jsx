@@ -39,7 +39,7 @@ const Discount = () => {
                             </figure>
                             <div className="card-body items-center text-center">
                                 <h2 className="card-title">Discount: <span className="text-red-400">{dis.discount}</span> %</h2>
-                                <p>Number of Medicine :pis</p>
+                                <p>of {dis.name}</p>
 
                             </div>
                         </SwiperSlide>)

@@ -164,13 +164,13 @@ const SignUp = () => {
                                 <label htmlFor="roll" className="text-sm">your roll</label>
                             </div>
                             <select {...register("roll")}>
-                                <option value="user">user</option>
-                                <option value="seller">seller</option>
+                                <option value="User">User</option>
+                                <option value="Seller">Seller</option>
                             </select>
                         </div>
 
                     </div>
-                    <button className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50">Sign Up</button>
+                    <button className="w-full px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50 btn">Sign Up</button>
                 </form>
             </div>
         </div>

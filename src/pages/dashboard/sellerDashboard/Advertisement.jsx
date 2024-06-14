@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
 const Advertisement = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure();
-    const [myAdds] = useMyAdvertise()
+    const [myAdds , refetch] = useMyAdvertise()
     console.log(myAdds)
 
     const {
@@ -22,7 +22,6 @@ const Advertisement = () => {
     const onSubmit = async (data) => {
         // console.log(data)
         const name = data.name;
-        // ok upload image in image bb
         const imageFile = data.image[0];
         const formData = new FormData();
         formData.append("image", imageFile);
@@ -48,6 +47,7 @@ const Advertisement = () => {
                 timer: 1500
             });
             reset()
+            refetch()
         }
 
     }

@@ -11,8 +11,7 @@ const ManageUser = () => {
     const axiosSecure = useAxiosSecure()
     const [selectUserId, setSelectUserId] = useState(null)
     const [selectUserRoll, setSelectUserRoll] = useState(null)
-    // const [selectUserRoll, setSelectUserRoll] = useState(null)
-
+   
     const handleSelected = (e) => {
         console.log(e.target.value)
         const roll = e.target.value;
@@ -54,7 +53,6 @@ const ManageUser = () => {
             <h2 className="text-center text-2xl font-bold">All users here</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>No</th>
@@ -79,13 +77,12 @@ const ManageUser = () => {
                     </tbody>
                 </table>
 
-                {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                {/* modal*/}
 
 
                 <dialog id="my_modal_3" className="modal">
                     <div className="modal-box h-1/2">
                         <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">X</button>
                         </form>
 
@@ -97,21 +94,10 @@ const ManageUser = () => {
                                 <option>Seller</option>
                                 <option>Admin</option>
                             </select>
-                            <div className="flex justify-evenly mt-10">
+                            <div className="flex justify-center mt-10">
                                 <button onClick={() => handleUpdate()} className="btn">Update</button>
-                                <button className="btn">No</button>
                             </div>
                         </div>
-
-                        {/* <div className="dropdown dropdown-bottom">
-                            <div tabIndex={0} role="button" className="btn m-1">Change Role</div>
-                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                <li><a>Item 1</a></li>
-                                <li><a>Item 2</a></li>
-                                <li><a>Item 2</a></li>
-                            </ul>
-                        </div> */}
-
                     </div>
                 </dialog>
 

@@ -8,14 +8,6 @@ const SellerReport = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure()
 
-    // const { data: sellers } = useQuery({
-    //     queryKey: [user?.email, 'sellerInfo'],
-    //     queryFn: async () => {
-    //         const res = await axiosSecure.get(`/booking`)
-    //         return res.data;
-    //     }
-    // })
-
     const { data: products } = useQuery({
         queryKey: [user?.email, 'products'],
         queryFn: async () => {
@@ -25,8 +17,7 @@ const SellerReport = () => {
     })
     const totalPriceProducts = products?.reduce((sum, items) => sum + items.price, 0)
 
-    // console.log(sellers)
-    // console.log(products)
+    console.log(products)
     // console.log(totalPriceProducts)
 
 
@@ -38,7 +29,6 @@ const SellerReport = () => {
             <h2 className="text-center text-bold text-2xl my-6">All Seller Report</h2>
             <div className="overflow-x-auto">
                 <table className="table">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>No</th>

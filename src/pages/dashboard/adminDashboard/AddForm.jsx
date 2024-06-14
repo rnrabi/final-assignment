@@ -3,7 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import useAllMedicine from "../../../hooks/useAllMedicine";
 import useAuth from "../../../hooks/useAuth";
-// import useSlider from "../../../hooks/useSlider";
+
 
 const AddForm = () => {
     const { user } = useAuth()
@@ -28,11 +28,11 @@ const AddForm = () => {
         const strength = data.strength;
         const discount = parseFloat(data.discount);
         const description = data.description;
-        const admin = { email: user?.email }
+        const seller = { name: user?.displayName, email: user?.email }
 
-        console.log(name, category, image, manufacturer, quantity, price, dosage, strength,discount, description, admin)
+        // console.log(name, category, image, manufacturer, quantity, price, dosage, strength,discount, description, seller)
 
-        const medicineAdd = { name, category, image, manufacturer, quantity, price, dosage, strength,discount, description, admin }
+        const medicineAdd = { name, category, image, manufacturer, quantity, price, dosage, strength, discount, description, seller }
 
         const { data: addMedi } = await axiosSecure.post('/allMedicine', medicineAdd)
         // console.log(addMedi)
@@ -101,9 +101,9 @@ const AddForm = () => {
                             </div>
                             <div className="col-span-full sm:col-span-3">
                                 <label htmlFor="discount" className="text-sm">discount</label>
-                                <input {...register("discount", { required: true })} id="discount" type="number" 
-                                defaultValue={0}
-                                placeholder="discount" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
+                                <input {...register("discount", { required: true })} id="discount" type="number"
+                                    defaultValue={0}
+                                    placeholder="discount" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300" />
                             </div>
 
                             <div className="col-span-full sm:col-span-3">

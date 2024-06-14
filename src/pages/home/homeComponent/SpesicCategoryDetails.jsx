@@ -16,8 +16,6 @@ const SpesicCategoryDetails = () => {
     const [specificCategory] = useSpecificCategory(category)
     console.log(specificCategory)
     const [, refetch] = useMyCarts()
-    // const [allMedicine] = useAllMedicine()
-    // console.log(allMedicine)
     const axiosPublic = useAxiosPublic()
 
     const handleDetails = async (id) => {
@@ -58,12 +56,6 @@ const SpesicCategoryDetails = () => {
         }
     }
 
-    const handleAddToCartModal = () => {
-        // id pass korte hobe...
-        handleAddToCart()
-    }
-
-
 
     if (!specificCategory) return <span>loading .... </span>
     return (
@@ -74,7 +66,6 @@ const SpesicCategoryDetails = () => {
             <h2 className="text-center text-2xl font-bold my-6">Here all <span className="text-slate-400">{category}</span> categories</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>Serial</th>
@@ -130,7 +121,6 @@ const SpesicCategoryDetails = () => {
                                 <h2>Strength:{categoryData?.strength}</h2>
                             </div>
                         </div>
-                        <button onClick={handleAddToCartModal} type="button" className="btn btn-outline px-8 py-3 font-semibold rounded-full dark:bg-violet-600 dark:text-gray-50">Select</button>
                     </div>
                 </div>
             </dialog>

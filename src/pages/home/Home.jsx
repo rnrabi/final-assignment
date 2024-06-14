@@ -16,7 +16,6 @@ const Home = () => {
             <Helmet>
                 <title>MediGlam | Home</title>
             </Helmet>
-            <h2>This is home page</h2>
             {/* slider section */}
             <div className="w-full md:w-11/12 mx-auto">
                 <Slider></Slider>

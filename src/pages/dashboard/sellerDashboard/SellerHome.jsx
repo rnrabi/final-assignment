@@ -51,7 +51,7 @@ const SellerHome = () => {
 
                         </div>
                         <div className="flex flex-col justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">$ {totalPaid}</p>
+                            <p className="text-3xl font-semibold leading-none">$ {totalPaid.toFixed(2)}</p>
                             <p className="capitalize">Paid Total</p>
                         </div>
                     </div>
@@ -61,7 +61,7 @@ const SellerHome = () => {
 
                         </div>
                         <div className="flex flex-col justify-center align-middle">
-                            <p className="text-3xl font-semibold leading-none">$ {pendingTotal}</p>
+                            <p className="text-3xl font-semibold leading-none">$ {pendingTotal.toFixed(2)}</p>
                             <p className="capitalize">Pending Total</p>
                         </div>
                     </div>

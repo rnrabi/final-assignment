@@ -27,7 +27,6 @@ const ManageMedicine = () => {
         const description = data.description;
         const dosage = data.dosage;
         const file = data.image[0];
-        // console.log(file)
         const formData = new FormData()
         formData.append('image', file);
         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imagebb_Api_key}`, formData)
@@ -99,7 +98,6 @@ const ManageMedicine = () => {
             {/* Table of seller added medicine */}
             <div className="overflow-x-auto">
                 <table className="table">
-                    {/* head */}
                     <thead>
                         <tr>
                             <th>No</th>
@@ -205,7 +203,7 @@ const ManageMedicine = () => {
                                             <label className="label">
                                                 <span className="label-text">quantity</span>
                                             </label>
-                                            <input  {...register("quantity", { required: true })} type="text" placeholder="quantity" className="input input-bordered" required />
+                                            <input  {...register("quantity", { required: true })} type="number" placeholder="quantity" className="input input-bordered" required />
                                         </div>
                                     </div>
                                     <div className="flex justify-between gap-10 mb-5">
