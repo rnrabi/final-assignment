@@ -2,25 +2,41 @@ import { useQuery } from "@tanstack/react-query";
 import logo from "../../assets/logo1.gif"
 import useAuth from "../../hooks/useAuth";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import useMyCarts from "../../hooks/useMyCarts";
+// import useMyCarts from "../../hooks/useMyCarts";
 
 const InvoiceDesplay = () => {
     const { user } = useAuth()
-    const [myCarts] = useMyCarts();
-    console.log(myCarts)
+    // const [myCarts] = useMyCarts();
+    // console.log(myCarts)
     const axiosPublic = useAxiosPublic()
 
-    const { data: checkout } = useQuery({
-        queryKey: ['checkout', user?.email],
+    const { data: userBook } = useQuery({
+        queryKey: ['userBook', user?.email],
         enabled: !!user?.email,
         queryFn: async () => {
-            const { data } = await axiosPublic.get(`/myCartsCheckout/${user?.email}`)
+            const { data } = await axiosPublic.get(`/booking/${user?.email}`)
             return data;
         }
     })
-    console.log(checkout)
 
-    const totalPrice = checkout?.total
+    const { data: products } = useQuery({
+        queryKey: ['products', user?.email],
+        enabled: !!user?.email,
+        queryFn: async () => {
+            const { data } = await axiosPublic.get(`/bookingProducts`)
+            return data;
+        }
+    })
+
+    const myProducts = products?.filter(product => product.email === `${user?.email}`)
+
+    const totalPrice = myProducts?.reduce((sum, items) => sum + items.price, 0);
+    const date = new Date().toLocaleDateString()
+
+    console.log(userBook)
+    console.log(products)
+    console.log(myProducts)
+
 
 
     return (
@@ -28,11 +44,11 @@ const InvoiceDesplay = () => {
             <div className="bg-white border rounded-lg shadow-lg px-6 py-8 max-w-md mx-auto mt-8">
                 <h1 className="font-bold text-2xl my-4 text-center text-blue-600 flex justify-center items-center gap-4"> <img src={logo} alt="" /><span>MediGlam</span></h1>
                 <hr className="mb-2" />
-                <div className="flex justify-between mb-6">
+                <div className="mb-6">
                     <h1 className="text-lg font-bold">Invoice</h1>
                     <div className="text-gray-700">
-                        <div>Date: </div>
-                        <div>TransactionID: </div>
+                        <div>Date: {date} </div>
+                        <div>TransactionID: {userBook?.[0]?.transactionId} </div>
                     </div>
                 </div>
                 <div className="mb-8">
@@ -49,9 +65,9 @@ const InvoiceDesplay = () => {
                     </thead>
                     <tbody>
                         {
-                            myCarts?.map(cart => <tr key={cart._id}>
-                                <td className="text-left text-gray-700">{cart.name}</td>
-                                <td className="text-right text-gray-700">${cart.price}</td>
+                            myProducts?.map(product => <tr key={product._id}>
+                                <td className="text-left text-gray-700">{product.name}</td>
+                                <td className="text-right text-gray-700">{product.price}</td>
                             </tr>)
                         }
                     </tbody>
