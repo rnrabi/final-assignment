@@ -25,42 +25,54 @@ const Shop = () => {
         document.getElementById('my_modal_3').showModal()
         handleDetails(id)
     }
-    console.log(singleMedi)
+    // console.log(singleMedi)
 
     const handleAddToCart = async (id) => {
-        handleDetails(id)
-        const name = singleMedi.name;
-        const email = user?.email;
-        const price = parseFloat(singleMedi.price);
-        const quantity = parseInt(singleMedi.quantity);
-        const seller = singleMedi.seller;
-        const category = singleMedi.category;
-        const description = singleMedi.description;
-        const dosage = singleMedi.dosage;
-        const company = singleMedi.manufacturer;
-        const strength = singleMedi.strength;
-        const buyer = {
-            name: user?.displayName,
-            email: user?.email
-        }
-        const status = 'pending'
+        // handleDetails(id)
+        axiosPublic.get(`/allMedicine/${id}`)
+            .then( async res => {
+                console.log(res.data)
+                const name = res.data.name;
+                const email = user?.email;
+                const price = parseFloat(res.data.price);
+                const quantity = parseInt(res.data.quantity);
+                const seller = res.data.seller;
+                const category = res.data.category;
+                const description = res.data.description;
+                const dosage = res.data.dosage;
+                const company = res.data.manufacturer;
+                const strength = res.data.strength;
+                const buyer = {
+                    name: user?.displayName,
+                    email: user?.email
+                }
+                const status = 'pending'
 
-        // console.log(name, email, price, quantity, company, seller, category, description, dosage, strength, buyer)
-        const myMediInfo = { name, email, price, quantity, company, seller, category, description, dosage, strength, buyer, status }
 
-        const resMedi = await axiosPublic.post('/myCarts', myMediInfo)
-        console.log(resMedi.data)
-        if (resMedi.data.acknowledged) {
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "You have added to cart",
-                showConfirmButton: false,
-                timer: 1500
-            });
-            refetch()
-        }
+                // console.log(name, email, price, quantity, company, seller, category, description, dosage, strength, buyer)
+                const myMediInfo = { name, email, price, quantity, company, seller, category, description, dosage, strength, buyer, status }
+
+                const resMedi =await axiosPublic.post('/myCarts', myMediInfo)
+                console.log(resMedi.data)
+
+                if (resMedi.data.acknowledged) {
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "You have added to cart",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    refetch()
+                }
+
+
+            })
+
+
     }
+
+
 
     return (
         <div>
@@ -88,7 +100,7 @@ const Shop = () => {
                                 <td>{medicine.category}</td>
                                 <td className="flex gap-9">
                                     <button onClick={() => handleAddToCart(medicine._id)} className="btn"
-                                        disabled={!user?.email}
+                                    // disabled={!user?.email}
                                     >select</button>
 
                                     <button className="btn" onClick={() => handleClick(medicine._id)}><FaEye className="text-xl"></FaEye></button>

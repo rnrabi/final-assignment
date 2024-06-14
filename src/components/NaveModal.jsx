@@ -13,7 +13,7 @@ const NaveModal = () => {
             return data;
         }
     })
-// console.log(logInUser)
+console.log(logInUser)
 
     return (
         <div>

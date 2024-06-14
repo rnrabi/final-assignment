@@ -6,13 +6,17 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import useAuth from "../../hooks/useAuth";
 
 
 
 const MyCarts = () => {
+    const { user } = useAuth()
     const [myCarts, refetch] = useMyCarts()
     console.log(myCarts)
     const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const [quantities, setQuantities] = useState({});
 
 
@@ -56,6 +60,21 @@ const MyCarts = () => {
         }
     }
 
+    const handleAllClear = async () => {
+        const { data } = await axiosPublic.delete(`/myAllCarts/${user?.email}`)
+        console.log(data)
+        if (data.deletedCount) {
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "deleted your all carts",
+                showConfirmButton: false,
+                timer: 1500
+            });
+            refetch()
+        }
+    }
+
 
     return (
         <div>
@@ -67,7 +86,7 @@ const MyCarts = () => {
             </div>
 
             <div>
-                <button className="btn btn-outline">all clear caart </button>
+                <button onClick={handleAllClear} className="btn btn-outline">all clear cart </button>
             </div>
 
             <div className="overflow-x-auto">
