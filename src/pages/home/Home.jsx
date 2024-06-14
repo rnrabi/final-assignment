@@ -3,6 +3,8 @@ import useAllMedicine from "../../hooks/useAllMedicine";
 import CategoryCart from "./homeComponent/CategoryCart";
 import Slider from "./homeComponent/Slider";
 import Discount from "./homeComponent/Discount";
+import Testimonial from "./homeComponent/Testimonial";
+import HelthTips from "./homeComponent/HelthTips";
 
 
 const Home = () => {
@@ -43,6 +45,13 @@ const Home = () => {
             </div>
             <div>
                 <Discount></Discount>
+            </div>
+
+            <div>
+                <Testimonial></Testimonial>
+            </div>
+            <div>
+                <HelthTips></HelthTips>
             </div>
         </div>
     );
