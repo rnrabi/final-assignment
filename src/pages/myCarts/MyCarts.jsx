@@ -1,10 +1,10 @@
 import useMyCarts from "../../hooks/useMyCarts";
 import { FaMinus } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 
@@ -13,11 +13,33 @@ const MyCarts = () => {
     const [myCarts, refetch] = useMyCarts()
     console.log(myCarts)
     const axiosSecure = useAxiosSecure()
-    const [quantity, setQuantity] = useState(0)
+    const [quantities, setQuantities] = useState({});
 
-    const handleIncrise = () => {
-        setQuantity(quantity + 1)
-    }
+
+    // Initialize quantities state based on myCarts data
+    useEffect(() => {
+        const initialQuantities = {};
+        myCarts.forEach(cart => {
+            initialQuantities[cart._id] = 1;
+        });
+        setQuantities(initialQuantities);
+    }, [myCarts]);
+
+
+    const handleIncrease = (id) => {
+        setQuantities(prevQuantities => ({
+            ...prevQuantities,
+            [id]: prevQuantities[id] + 1
+        }));
+    };
+
+    const handleDecrease = (id) => {
+        setQuantities(prevQuantities => ({
+            ...prevQuantities,
+            [id]: prevQuantities[id] > 1 ? prevQuantities[id] - 1 : 1
+        }));
+    };
+
 
     const handleRemove = async (id) => {
         const { data } = await axiosSecure.delete(`/myCarts/${id}`)
@@ -37,7 +59,7 @@ const MyCarts = () => {
 
     return (
         <div>
-             <Helmet>
+            <Helmet>
                 <title>MediGlam | MyCarts</title>
             </Helmet>
             <div className="flex justify-center items-center gap-5">
@@ -57,7 +79,7 @@ const MyCarts = () => {
                             <th>Name</th>
                             <th>Company</th>
                             <th>Price/unite</th>
-                            <th>Quantity</th>
+                            <th>Total Quantity</th>
                             <th>Your Quantity</th>
                             <th>Action</th>
                         </tr>
@@ -72,9 +94,9 @@ const MyCarts = () => {
                                 <td>{myCart.quantity}</td>
                                 <td>
                                     <div className="flex gap-6">
-                                        <button><FaMinus></FaMinus></button>
-                                        {quantity}
-                                        <button onClick={handleIncrise}><FaPlus></FaPlus></button>
+                                        <button onClick={() => handleDecrease(myCart._id)}><FaMinus></FaMinus></button>
+                                        {quantities[myCart._id]}
+                                        <button onClick={() => handleIncrease(myCart._id)}><FaPlus></FaPlus></button>
                                     </div>
                                 </td>
                                 <td><button onClick={() => handleRemove(myCart._id)} className="btn">remove</button></td>
