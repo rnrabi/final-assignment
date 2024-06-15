@@ -47,7 +47,7 @@ const SellerReport = () => {
             <Helmet>
                 <title>Dashboard | SellerReport</title>
             </Helmet>
-            <h2 className="text-center text-bold text-2xl my-6">All Seller Report</h2>
+            <h2 className="text-center text-bold text-2xl my-6">All Sales Report</h2>
             <div className="overflow-x-auto">
                 <table className="table">
                     <thead>

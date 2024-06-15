@@ -1,20 +1,53 @@
-import useAllMedicine from "../../hooks/useAllMedicine";
+// import useAllMedicine from "../../hooks/useAllMedicine";
 import { FaEye } from "react-icons/fa";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useMyCarts from "../../hooks/useMyCarts";
 import { Helmet } from "react-helmet-async";
+import { useQuery } from "@tanstack/react-query";
 
 
 const Shop = () => {
     const { user } = useAuth()
-    const [singleMedi, setSingleMedi] = useState({})
-    const [allMedicine] = useAllMedicine()
-    console.log(allMedicine)
     const [, refetch] = useMyCarts()
     const axiosPublic = useAxiosPublic()
+    const [singleMedi, setSingleMedi] = useState({})
+    // pagination ...... 
+    const [count, setCount] = useState(0)
+    const [itemPerPage, setItemPerPage] = useState(5)
+    const [currentPage, setCurrentPage] = useState(1)
+    const pageNumber = Math.ceil(count / itemPerPage)
+    // console.log(pageNumber)
+    const pages = [...Array(pageNumber).keys()].map(element => element + 1)
+    console.log(pages)
+
+    // const [allMedicine, refetch] = useAllMedicine()
+    // console.log(allMedicine)
+    const { data: allMedicine = [] } = useQuery({
+        queryKey: ['allMedicine', currentPage],
+        queryFn: async () => {
+            const res = await axiosPublic.get(`/allMedicine?page=${currentPage}&size=${itemPerPage}`)
+            return res.data;
+        }
+    })
+
+    useEffect(() => {
+        const getCountData = async () => {
+            const { data } = await axiosPublic.get('/allMedicine-count')
+            setCount(data?.count)
+            // console.log(data?.count)
+        }
+        getCountData()
+    }, [])
+
+
+
+
+
+
+
 
     const handleDetails = async (id) => {
         console.log(id)
@@ -25,12 +58,12 @@ const Shop = () => {
         document.getElementById('my_modal_3').showModal()
         handleDetails(id)
     }
-    console.log(user)
+    // console.log(user)
 
     const handleAddToCart = async (id) => {
         // handleDetails(id)
         axiosPublic.get(`/allMedicine/${id}`)
-            .then( async res => {
+            .then(async res => {
                 console.log(res.data)
                 const name = res.data.name;
                 const email = user?.email;
@@ -52,7 +85,7 @@ const Shop = () => {
                 // console.log(name, email, price, quantity, company, seller, category, description, dosage, strength, buyer)
                 const myMediInfo = { name, email, price, quantity, company, seller, category, description, dosage, strength, buyer, status }
 
-                const resMedi =await axiosPublic.post('/myCarts', myMediInfo)
+                const resMedi = await axiosPublic.post('/myCarts', myMediInfo)
                 console.log(resMedi.data)
 
                 if (resMedi.data.acknowledged) {
@@ -72,6 +105,13 @@ const Shop = () => {
 
     }
 
+    // pagenation function 
+    const handlePage = (value) => {
+        console.log(value)
+        setCurrentPage(value)
+
+
+    }
 
 
     return (
@@ -92,7 +132,7 @@ const Shop = () => {
                     </thead>
                     <tbody>
                         {
-                            allMedicine.map((medicine, index) => <tr
+                            allMedicine?.map((medicine, index) => <tr
                                 key={medicine._id}
                             >
                                 <th>{index + 1}</th>
@@ -142,6 +182,27 @@ const Shop = () => {
                     </div>
                 </div>
             </dialog>
+
+            {/* pagenation */}
+            <div className="flex justify-center space-x-1 dark:text-gray-800 my-12">
+                <button title="previous" type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md dark:bg-gray-50 dark:border-gray-100">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+
+                {
+                    pages?.map(page => <button key={page} onClick={() => handlePage(page)} title="Page 1" className="inline-flex items-center justify-center w-8 h-8 text-sm font-semibold border rounded shadow-md dark:bg-gray-50 dark:text-violet-600 dark:border-violet-600">{page}</button>)
+                }
+
+
+
+                <button title="next" type="button" className="inline-flex items-center justify-center w-8 h-8 py-0 border rounded-md shadow-md dark:bg-gray-50 dark:border-gray-100">
+                    <svg viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" className="w-4">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
 
         </div>
 
