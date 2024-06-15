@@ -13,6 +13,8 @@ const Shop = () => {
     const [, refetch] = useMyCarts()
     const axiosPublic = useAxiosPublic()
     const [singleMedi, setSingleMedi] = useState({})
+    const [sort, setSort] = useState('')
+    const [search, setSearch] = useState('')
     // pagination ...... 
     const [count, setCount] = useState(0)
     const [itemPerPage, setItemPerPage] = useState(5)
@@ -23,21 +25,21 @@ const Shop = () => {
     console.log(pages)
 
     const { data: allMedicine = [] } = useQuery({
-        queryKey: ['allMedicine', currentPage, itemPerPage],
+        queryKey: ['allMedicine', currentPage, itemPerPage, sort, search],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/allMedicine?page=${currentPage}&size=${itemPerPage}`)
+            const res = await axiosPublic.get(`/allMedicine?page=${currentPage}&size=${itemPerPage}&sort=${sort}&search=${search}`)
             return res.data;
         }
     })
 
     useEffect(() => {
         const getCountData = async () => {
-            const { data } = await axiosPublic.get('/allMedicine-count')
+            const { data } = await axiosPublic.get(`/allMedicine-count?search=${search}`)
             setCount(data?.count)
             // console.log(data?.count)
         }
         getCountData()
-    }, [])
+    }, [search])
 
 
 
@@ -103,13 +105,45 @@ const Shop = () => {
         setCurrentPage(value)
     }
 
+    const handleSort = (e) => {
+        console.log(e.target.value)
+        setSort(e.target.value)
+    }
+
+    const handleSearch = (e) => {
+        e.preventDefault()
+        console.log(e.target.search.value)
+        setSearch(e.target.search.value)
+    }
+
 
     return (
         <div>
             <Helmet>
                 <title>MediGlam | Shop</title>
             </Helmet>
+
             <h2 className="text-center text-2xl font-bold my-6">Our All Medicine</h2>
+
+            <div className="flex justify-start gap-4 py-5">
+                <div>
+                    <select onChange={handleSort} className="select select-bordered w-full max-w-xs">
+                        <option value='' disabled selected>sort by price</option>
+                        <option value='dsc'>diccending order</option>
+                        <option value='asc'>accending order</option>
+                    </select>
+                </div>
+                <div>
+                    <form onSubmit={handleSearch} className="input input-bordered flex items-center gap-2">
+                        <input type="text" name="search" className="grow" placeholder="Search" />
+                        <button>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4 opacity-70"><path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" /></svg>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     <thead>
@@ -117,7 +151,8 @@ const Shop = () => {
                             <th>Serial</th>
                             <th>Name</th>
                             <th>Category</th>
-                            <th>Chose any</th>
+                            <th>Price</th>
+                            <th>Chose/Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -128,6 +163,7 @@ const Shop = () => {
                                 <th>{index + 1}</th>
                                 <td>{medicine.name}</td>
                                 <td>{medicine.category}</td>
+                                <td>{medicine.price}</td>
                                 <td className="flex gap-9">
                                     <button onClick={() => handleAddToCart(medicine._id)} className="btn"
                                     // disabled={!user?.email}
