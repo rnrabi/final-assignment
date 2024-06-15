@@ -1,74 +1,57 @@
-// import { useQuery } from "@tanstack/react-query";
-// import useAuth from "../../hooks/useAuth";
-// import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import logo from "../../assets/logo.jpg"
+import { Text, View } from "@react-pdf/renderer";
 
 
-const InvoiceMemo = () => {
 
-//     const { user } = useAuth()
-//     const axiosSecure = useAxiosSecure()
-//     const { data: booking, refetch } = useQuery({
-//         queryKey: [user?.email, 'booking'],
-//         enabled:!!user?.email,
-//         queryFn: async () => {
-//             const res = await axiosSecure.get(`/booking/${user?.email}`)
-//             return res.data;
-//         }
-//     })
+const InvoiceMemo = ({ user, userBook, products, date }) => {
 
-// console.log(booking)
+    const myProducts = products?.filter(product => product.email === `${user?.email}`)
+
+    const totalPrice = myProducts?.reduce((sum, items) => sum + items.price, 0);
+
 
     return (
-        <div>
-            <div className="bg-white border rounded-lg shadow-lg px-6 py-8 max-w-md mx-auto mt-8">
-                <h1 className="font-bold text-2xl my-4 text-center text-blue-600">KRP Services</h1>
+        <View>
+            <View className="bg-white border rounded-lg shadow-lg px-6 py-8 max-w-md mx-auto mt-8">
+                <Text className="font-bold text-2xl my-4 text-center text-blue-600 flex justify-center items-center gap-4"> <image src="../../assets/logo1.gif" alt="" /><Text>MediGlam</Text></Text>
                 <hr className="mb-2" />
-                <div className="flex justify-between mb-6">
-                    <h1 className="text-lg font-bold">Invoice</h1>
-                    <div className="text-gray-700">
-                        <div>Date: 01/05/2023</div>
-                        <div>Invoice #: INV12345</div>
-                    </div>
-                </div>
-                <div className="mb-8">
-                    <h2 className="text-lg font-bold mb-4">Bill To:</h2>
-                    <div className="text-gray-700 mb-2">John Doe</div>
-                    <div className="text-gray-700 mb-2">123 Main St.</div>
-                    <div className="text-gray-700 mb-2">Anytown, USA 12345</div>
-                    <div className="text-gray-700">johndoe@example.com</div>
-                </div>
+                <View className="mb-6">
+                    <Text className="text-lg font-bold">Invoice</Text>
+                    <View className="text-gray-700">
+                        <View>Date: {date} </View>
+                        <View>TransactionID: {userBook?.[0]?.transactionId} </View>
+                    </View>
+                </View>
+                <View className="mb-8">
+                    <Text className="text-lg font-bold mb-4">Bill To:</Text>
+                    <Text className="text-gray-700 mb-2">{user?.displayName}</Text>
+                    <Text className="text-gray-700">{user?.email}</Text>
+                </View>
                 <table className="w-full mb-8">
                     <thead>
                         <tr>
-                            <th className="text-left font-bold text-gray-700">Description</th>
-                            <th className="text-right font-bold text-gray-700">Amount</th>
+                            <Text className="text-left font-bold text-gray-700">Description</Text>
+                            <Text className="text-right font-bold text-gray-700">Amount</Text>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td className="text-left text-gray-700">Product 1</td>
-                            <td className="text-right text-gray-700">$100.00</td>
-                        </tr>
-                        <tr>
-                            <td className="text-left text-gray-700">Product 2</td>
-                            <td className="text-right text-gray-700">$50.00</td>
-                        </tr>
-                        <tr>
-                            <td className="text-left text-gray-700">Product 3</td>
-                            <td className="text-right text-gray-700">$75.00</td>
-                        </tr>
+                        {
+                            myProducts?.map(product => <tr key={product._id}>
+                                <Text className="text-left text-gray-700">{product.name}</Text>
+                                <Text className="text-right text-gray-700">{product.price}</Text>
+                            </tr>)
+                        }
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td className="text-left font-bold text-gray-700">Total</td>
-                            <td className="text-right font-bold text-gray-700">$225.00</td>
+                            <Text className="text-left font-bold text-gray-700">Grand Total</Text>
+                            <Text className="text-right font-bold text-gray-700">${totalPrice}</Text>
                         </tr>
                     </tfoot>
                 </table>
-                <div className="text-gray-700 mb-2">Thank you for your business!</div>
-                <div className="text-gray-700 text-sm">Please remit payment within 30 days.</div>
-            </div>
-        </div>
+                <Text className="text-gray-700 mb-2">Thank you for purchase!</Text>
+            </View>
+        </View>
     );
 };
 

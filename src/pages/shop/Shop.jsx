@@ -25,7 +25,7 @@ const Shop = () => {
         document.getElementById('my_modal_3').showModal()
         handleDetails(id)
     }
-    // console.log(singleMedi)
+    console.log(user)
 
     const handleAddToCart = async (id) => {
         // handleDetails(id)

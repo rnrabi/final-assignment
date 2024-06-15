@@ -33,9 +33,9 @@ const InvoiceDesplay = () => {
     const totalPrice = myProducts?.reduce((sum, items) => sum + items.price, 0);
     const date = new Date().toLocaleDateString()
 
-    console.log(userBook)
-    console.log(products)
-    console.log(myProducts)
+    // console.log(userBook)
+    // console.log(products)
+    // console.log(myProducts)
 
 
 
