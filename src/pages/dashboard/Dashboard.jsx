@@ -15,7 +15,7 @@ import { GiMedicinePills } from "react-icons/gi";
 
 const Dashboard = () => {
   const { roll, isLoading } = useRoll()
-  console.log(roll?.roll)
+  // //console.log(roll?.roll)
   const [myCarts] = useMyCarts()
   if (!roll?.roll && isLoading) return <span>Spinner .... </span>
   return (

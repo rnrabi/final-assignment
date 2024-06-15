@@ -21,9 +21,9 @@ const SellerHome = () => {
             return data;
         }
     })
-    console.log(sellerHome)
+    //console.log(sellerHome)
     const uniqueSeller = sellerHome?.filter(seller => seller.email == user?.email)
-    console.log(uniqueSeller)
+    //console.log(uniqueSeller)
     const totalPaid = uniqueSeller?.reduce((sum, items) => sum + parseFloat(items.price), 0)
     const pendingTotal = sellerCart?.reduce((sum, items) => sum + parseFloat(items.price), 0)
 

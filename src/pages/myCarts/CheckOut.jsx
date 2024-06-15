@@ -19,10 +19,10 @@ const CheckOut = () => {
             return data;
         }
     })
-    // console.log(checkout)
+    // //console.log(checkout)
 
     const totalPrice = checkout?.total.toFixed(2)
-    // console.log(totalPrice)
+    // //console.log(totalPrice)
 
     if (!totalPrice) {
         return <span className="loading loading-spinner loading-lg"></span>

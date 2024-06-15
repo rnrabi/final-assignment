@@ -20,8 +20,8 @@ const SellerReport = () => {
     })
     const totalPriceProducts = products?.reduce((sum, items) => sum + items.price, 0)
 
-    console.log(products)
-    // console.log(totalPriceProducts)
+    // //console.log(products)
+    // //console.log(totalPriceProducts)
 
     const MyDoc = (
         <Document>

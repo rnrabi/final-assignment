@@ -20,9 +20,9 @@ const Shop = () => {
     const [itemPerPage, setItemPerPage] = useState(5)
     const [currentPage, setCurrentPage] = useState(1)
     const pageNumber = Math.ceil(count / itemPerPage)
-    // console.log(pageNumber)
+    // //console.log(pageNumber)
     const pages = [...Array(pageNumber).keys()].map(element => element + 1)
-    console.log(pages)
+    //console.log(pages)
 
     const { data: allMedicine = [] } = useQuery({
         queryKey: ['allMedicine', currentPage, itemPerPage, sort, search],
@@ -36,7 +36,7 @@ const Shop = () => {
         const getCountData = async () => {
             const { data } = await axiosPublic.get(`/allMedicine-count?search=${search}`)
             setCount(data?.count)
-            // console.log(data?.count)
+            // //console.log(data?.count)
         }
         getCountData()
     }, [search])
@@ -44,7 +44,7 @@ const Shop = () => {
 
 
     const handleDetails = async (id) => {
-        console.log(id)
+        //console.log(id)
         const res = await axiosPublic.get(`/allMedicine/${id}`)
         setSingleMedi(res.data)
     }
@@ -52,13 +52,12 @@ const Shop = () => {
         document.getElementById('my_modal_3').showModal()
         handleDetails(id)
     }
-    // console.log(user)
+    //console.log(user)
 
     const handleAddToCart = async (id) => {
-        // handleDetails(id)
         axiosPublic.get(`/allMedicine/${id}`)
             .then(async res => {
-                console.log(res.data)
+                //console.log(res.data)
                 const name = res.data.name;
                 const email = user?.email;
                 const price = parseFloat(res.data.price);
@@ -76,11 +75,11 @@ const Shop = () => {
                 const status = 'pending'
 
 
-                // console.log(name, email, price, quantity, company, seller, category, description, dosage, strength, buyer)
+                // //console.log(name, email, price, quantity, company, seller, category, description, dosage, strength, buyer)
                 const myMediInfo = { name, email, price, quantity, company, seller, category, description, dosage, strength, buyer, status }
 
                 const resMedi = await axiosPublic.post('/myCarts', myMediInfo)
-                console.log(resMedi.data)
+                //console.log(resMedi.data)
 
                 if (resMedi.data.acknowledged) {
                     Swal.fire({
@@ -101,18 +100,18 @@ const Shop = () => {
 
     // pagenation function 
     const handlePage = (value) => {
-        // console.log(value)
+        // //console.log(value)
         setCurrentPage(value)
     }
 
     const handleSort = (e) => {
-        console.log(e.target.value)
+        //console.log(e.target.value)
         setSort(e.target.value)
     }
 
     const handleSearch = (e) => {
         e.preventDefault()
-        console.log(e.target.search.value)
+        //console.log(e.target.search.value)
         setSearch(e.target.search.value)
     }
 

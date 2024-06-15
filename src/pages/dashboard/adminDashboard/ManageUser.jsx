@@ -7,24 +7,23 @@ import { Helmet } from "react-helmet-async";
 
 const ManageUser = () => {
     const [allUsers, isLoading, refetch] = useUsers()
-    console.log(allUsers)
+   
     const axiosSecure = useAxiosSecure()
     const [selectUserId, setSelectUserId] = useState(null)
     const [selectUserRoll, setSelectUserRoll] = useState(null)
    
     const handleSelected = (e) => {
-        console.log(e.target.value)
         const roll = e.target.value;
         setSelectUserRoll(roll)
     }
     const handleUpdate = async () => {
-        console.log(selectUserId, selectUserRoll)
+        // //console.log(selectUserId, selectUserRoll)
         const updateUser = {
             id: selectUserId,
             roll: selectUserRoll
         }
         const { data } = await axiosSecure.put(`/user/${selectUserId}`, updateUser)
-        console.log(data)
+        // //console.log(data)
         if (data.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",

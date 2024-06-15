@@ -14,12 +14,12 @@ const SpesicCategoryDetails = () => {
     const { user } = useAuth()
     const { category } = useParams()
     const [specificCategory] = useSpecificCategory(category)
-    console.log(specificCategory)
+    //console.log(specificCategory)
     const [, refetch] = useMyCarts()
     const axiosPublic = useAxiosPublic()
 
     const handleDetails = async (id) => {
-        console.log(id)
+        //console.log(id)
         const res = await axiosPublic.get(`/allMedicine/${id}`)
         setCategoryData(res.data)
     }
@@ -28,7 +28,7 @@ const SpesicCategoryDetails = () => {
         handleDetails(id)
     }
 
-    console.log(categoryData)
+    //console.log(categoryData)
 
     const handleAddToCart = async (id) => {
         handleDetails(id)
@@ -38,11 +38,11 @@ const SpesicCategoryDetails = () => {
         const quantity = categoryData.quantity;
         const company = categoryData.manufacturer;
 
-        console.log(name, email, price, quantity, company)
+        //console.log(name, email, price, quantity, company)
         const myMediInfo = { name, email, price, quantity, company }
 
         const resMedi = await axiosPublic.post('/myCarts', myMediInfo)
-        console.log(resMedi.data)
+        //console.log(resMedi.data)
         if (resMedi.data.acknowledged) {
             Swal.fire({
                 position: "top-end",

@@ -15,12 +15,12 @@ const AdminPamentHistory = () => {
             return res.data;
         }
     })
-    console.log(paymentHistory)
+    // //console.log(paymentHistory)
 
     const handlePaymentAccept = async (id) => {
-        console.log(id)
+        // //console.log(id)
         const { data } = await axiosSecure.put(`/bookingUpdate/${id}`)
-        console.log(data)
+        // //console.log(data)
         if (data.modifiedCount > 0) {
             Swal.fire({
                 position: "top-end",
@@ -53,7 +53,7 @@ const AdminPamentHistory = () => {
                     <tbody>
                         {
                             paymentHistory?.map(history => <tr key={history._id}>
-                                <td>{history.customar.name}</td>
+                                <td>{history.customar.name || 'unknowen'}</td>
                                 <td>{history.adminStatus}</td>
                                 <td><button onClick={() => handlePaymentAccept(history._id)} className="btn btn-outline btn-sm">Accept Payment</button></td>
                             </tr>)

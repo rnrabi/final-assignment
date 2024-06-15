@@ -17,7 +17,7 @@ const AddForm = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        // console.log(data)
+        // //console.log(data)
         const name = data.name;
         const category = data.category;
         const image = data.photo;
@@ -30,14 +30,14 @@ const AddForm = () => {
         const description = data.description;
         const seller = { name: user?.displayName, email: user?.email }
 
-        // console.log(name, category, image, manufacturer, quantity, price, dosage, strength,discount, description, seller)
+        // //console.log(name, category, image, manufacturer, quantity, price, dosage, strength,discount, description, seller)
 
         const medicineAdd = { name, category, image, manufacturer, quantity, price, dosage, strength, discount, description, seller }
 
         const { data: addMedi } = await axiosSecure.post('/allMedicine', medicineAdd)
-        // console.log(addMedi)
+        // //console.log(addMedi)
         const { data: banner } = await axiosSecure.put('/banner', { image })
-        // console.log(banner)
+        // //console.log(banner)
         if (banner.acknowledged) {
             refetch()
         }

@@ -14,7 +14,7 @@ import useAuth from "../../hooks/useAuth";
 const MyCarts = () => {
     const { user } = useAuth()
     const [myCarts, refetch] = useMyCarts()
-    console.log(myCarts)
+    //console.log(myCarts)
     const axiosSecure = useAxiosSecure()
     const axiosPublic = useAxiosPublic()
     const [quantities, setQuantities] = useState({});
@@ -47,7 +47,7 @@ const MyCarts = () => {
 
     const handleRemove = async (id) => {
         const { data } = await axiosSecure.delete(`/myCarts/${id}`)
-        console.log(data)
+        //console.log(data)
         if (data.deletedCount > 0) {
             Swal.fire({
                 position: "top-end",
@@ -62,7 +62,7 @@ const MyCarts = () => {
 
     const handleAllClear = async () => {
         const { data } = await axiosPublic.delete(`/myAllCarts/${user?.email}`)
-        console.log(data)
+        //console.log(data)
         if (data.deletedCount) {
             Swal.fire({
                 position: "top-end",

@@ -14,10 +14,10 @@ const CheckoutForm = ({ price }) => {
     const { user } = useAuth()
     const stripe = useStripe();
     const elements = useElements();
-    console.log(price)
+    //console.log(price)
     const navigate = useNavigate()
     const [myCarts] = useMyCarts()
-    console.log(...myCarts)
+    //console.log(...myCarts)
 
     const { data: clientSecret, isLoading, isError } = useQuery({
         queryKey: ['payment-intent'],
@@ -26,7 +26,7 @@ const CheckoutForm = ({ price }) => {
             return data.clientSecret;
         }
     })
-    console.log(clientSecret)
+    //console.log(clientSecret)
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -55,9 +55,9 @@ const CheckoutForm = ({ price }) => {
         });
 
         if (error) {
-            console.log('[error]', error);
+            //console.log('[error]', error);
         } else {
-            console.log('[PaymentMethod]', paymentMethod);
+            //console.log('[PaymentMethod]', paymentMethod);
         }
 
         const { error: confirmError, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
@@ -70,7 +70,7 @@ const CheckoutForm = ({ price }) => {
             }
         })
         if (confirmError) {
-            console.log(confirmError)
+            //console.log(confirmError)
             return;
         }
 
@@ -91,12 +91,12 @@ const CheckoutForm = ({ price }) => {
             }
             // save in database
             const { data } = await axiosSecure.post('/booking', paymentInfo)
-            console.log(data)
+            //console.log(data)
 
             const res = await axiosSecure.patch(`/updateCartStatus/${user?.email}`)
-            console.log(res.data)
+            //console.log(res.data)
          
-            console.log('success payment', paymentInfo)
+            //console.log('success payment', paymentInfo)
             navigate('/invoice')
         }
 

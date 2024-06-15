@@ -11,7 +11,7 @@ const Advertisement = () => {
     const { user } = useAuth()
     const axiosSecure = useAxiosSecure();
     const [myAdds , refetch] = useMyAdvertise()
-    console.log(myAdds)
+    //console.log(myAdds)
 
     const {
         register,
@@ -20,24 +20,24 @@ const Advertisement = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        // console.log(data)
+        // //console.log(data)
         const name = data.name;
         const imageFile = data.image[0];
         const formData = new FormData();
         formData.append("image", imageFile);
         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imagebb_Api_key}`, formData)
         const imageURL = res.data.data.display_url
-        // console.log(res.data.data.display_url)
+        // //console.log(res.data.data.display_url)
 
         const description = data.description;
         const status = 'pending'
         const sellerEmail = user?.email;
-        console.log(name, description, sellerEmail, status, imageURL)
+        //console.log(name, description, sellerEmail, status, imageURL)
 
         const advertiseInfo = { name, description, status, sellerEmail, image: imageURL }
 
         const { data: advertisement } = await axiosSecure.post('/advertise', advertiseInfo)
-        console.log(advertisement)
+        //console.log(advertisement)
         if (advertisement.insertedId) {
             Swal.fire({
                 position: "top-end",

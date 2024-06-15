@@ -10,7 +10,7 @@ import { Helmet } from "react-helmet-async";
 const UpDateMangeCatery = () => {
     const { id } = useParams()
     const [updateCategory] = useUpdateCategory(id)
-    console.log(updateCategory)
+    // //console.log(updateCategory)
     const axiosSecure = useAxiosSecure()
     const navigate = useNavigate()
 
@@ -33,7 +33,7 @@ const UpDateMangeCatery = () => {
     })
 
     const onSubmit = async (data) => {
-        // console.log(data)
+        // //console.log(data)
 
         const category = data.category;
         const description = data.description;
@@ -45,12 +45,12 @@ const UpDateMangeCatery = () => {
         const quantity = data.quantity;
         const strength = data.strength;
 
-        // console.log(category, description, dosage, image, manufacturer, name, price, quantity, strength)
+        // //console.log(category, description, dosage, image, manufacturer, name, price, quantity, strength)
 
         const updateInfo = { category, description, dosage, image, manufacturer, name, price, quantity, strength }
 
         const { data: updateData } = await axiosSecure.post('/allMedicine', updateInfo)
-        // console.log(updateData)
+        // //console.log(updateData)
         if (updateData.insertedId) {
             Swal.fire({
                 position: "top-end",

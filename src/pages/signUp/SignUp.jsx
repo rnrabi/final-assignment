@@ -15,7 +15,7 @@ const SignUp = () => {
     const { register, handleSubmit } = useForm()
 
     const onSubmit = async (data) => {
-        console.log(data)
+        //console.log(data)
         const name = data.name;
         const email = data.email;
         const password = data.password;
@@ -23,12 +23,12 @@ const SignUp = () => {
         const imageFile = data.photo[0];
         const formData = new FormData();
         formData.append("image", imageFile);
-        console.log(name, email, password, roll, formData)
+        //console.log(name, email, password, roll, formData)
 
         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imagebb_Api_key}`, formData)
 
         const userURL = res.data.data.display_url;
-        // console.log(userURL)
+        // //console.log(userURL)
 
 
         signUpUser(email, password)
@@ -61,7 +61,7 @@ const SignUp = () => {
     const handleGoogleLogIn = () => {
         googleSignUp()
             .then(async result => {
-                console.log(result.user)
+                //console.log(result.user)
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -76,7 +76,7 @@ const SignUp = () => {
                 // const password = data.password;
                 const roll = 'User';
                 const image = result.user.photoURL;
-                // console.log(name, email, roll, image)
+                // //console.log(name, email, roll, image)
 
                 const userInfo = { name, email, roll, image}
                 const response = await axiosPublic.post('/users', userInfo)
@@ -90,7 +90,7 @@ const SignUp = () => {
     const handleTwitterLogIn = () => {
         twitterSignUp()
             .then(async result => {
-                console.log(result.user)
+                //console.log(result.user)
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -105,7 +105,7 @@ const SignUp = () => {
                 // const password = data.password;
                 const roll = 'User';
                 const image = result.user.photoURL;
-                // console.log(name, email, roll, image)
+                // //console.log(name, email, roll, image)
 
                 const userInfo = { name, email, roll, image}
                 const response = await axiosPublic.post('/users', userInfo)

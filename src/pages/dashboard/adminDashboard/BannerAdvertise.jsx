@@ -5,17 +5,14 @@ import useBannerAdvertise from "../../../hooks/useBannerAdvertise";
 
 const BannerAdvertise = () => {
     const [allBanner] = useBannerAdvertise()
-    console.log(allBanner)
     const axiosSecure = useAxiosSecure();
 
     const handleToggle = async (e, image) => {
-        console.log(e.target.checked)
         const addRemove = e.target.checked;
-        // console.log(image)
+        // //console.log(image)
 
         if (addRemove) {
             const { data } = await axiosSecure.put('/banner', { image })
-            console.log(data)
             if (data.acknowledged) {
                 Swal.fire({
                     position: "top-end",
@@ -37,7 +34,6 @@ const BannerAdvertise = () => {
         }
         else {
             const { data } = await axiosSecure.delete(`/banner?image=${image}`)
-            console.log(data)
             if (data.deletedCount > 0) {
                 Swal.fire({
                     position: "top-end",

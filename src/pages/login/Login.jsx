@@ -15,10 +15,10 @@ const Login = () => {
     const { register, handleSubmit } = useForm()
 
     const onSubmit = (data) => {
-        // console.log(data)
+        // //console.log(data)
         const email = data.email;
         const password = data.password;
-        // console.log(email, password)
+        // //console.log(email, password)
         logInUser(email, password)
             .then(result => {
                 console.log(result.user)
@@ -41,7 +41,7 @@ const Login = () => {
     const handleGoogleLogIn = () => {
         googleSignUp()
             .then(async result => {
-                console.log(result.user)
+                //console.log(result.user)
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -56,7 +56,7 @@ const Login = () => {
                 // const password = data.password;
                 const roll = 'User';
                 const image = result.user.photoURL;
-                // console.log(name, email, roll, image)
+                // //console.log(name, email, roll, image)
 
                 const userInfo = { name, email, roll, image }
                 const response = await axiosPublic.post('/users', userInfo)
@@ -69,7 +69,7 @@ const Login = () => {
     const handleTwitterLogIn = () => {
         twitterSignUp()
             .then(async result => {
-                console.log(result.user)
+                //console.log(result.user)
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
@@ -84,7 +84,7 @@ const Login = () => {
                 // const password = data.password;
                 const roll = 'User';
                 const image = result.user.photoURL;
-                // console.log(name, email, roll, image)
+                // //console.log(name, email, roll, image)
 
                 const userInfo = { name, email, roll, image }
                 const response = await axiosPublic.post('/users', userInfo)

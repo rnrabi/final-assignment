@@ -17,7 +17,7 @@ const Discount = () => {
         }
     })
 
-    console.log(discount)
+    //console.log(discount)
     return (
         <div>
             <h2 className="text-center text-2xl font-bold mt-10"> Our Discount Medicine</h2>

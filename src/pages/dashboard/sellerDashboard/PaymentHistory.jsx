@@ -10,12 +10,12 @@ const PaymentHistory = () => {
 
     const axiosPublic = useAxiosPublic()
     const [sellers] = useCustomerDetails()
-    console.log(sellers)
+    //console.log(sellers)
 
 
-    // console.log(sellers && sellers[0].buyer.email)
+    // //console.log(sellers && sellers[0].buyer.email)
     const customerEmail = sellers && sellers[0]?.buyer?.email;
-    console.log(customerEmail)
+    //console.log(customerEmail)
     const { data: customerDetails } = useQuery({
         queryKey: ['customer'],
         enabled: !!customerEmail,
@@ -25,7 +25,7 @@ const PaymentHistory = () => {
         }
     })
 
-    console.log(customerDetails)
+    //console.log(customerDetails)
 
 
     return (

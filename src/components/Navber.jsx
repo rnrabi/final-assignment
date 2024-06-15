@@ -55,7 +55,6 @@ const Navber = () => {
 
                         <li><NavLink to='/register' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>Sign Up</NavLink></li>
 
-                        <li><NavLink to='/invoice' className={({ isActive }) => isActive ? 'font-bold underline' : ''}>testInvoice</NavLink></li>
 
                         <li>
                             <details>

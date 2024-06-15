@@ -9,9 +9,9 @@ import HelthTips from "./homeComponent/HelthTips";
 
 const Home = () => {
     const [allMedicine] = useAllMedicine()
-    console.log(allMedicine)
+    // //console.log(allMedicine)
     const categoryList = [...new Set(allMedicine.map(medicine => medicine.category))]
-    console.log(categoryList)
+    // //console.log(categoryList)
 
     return (
         <div>
@@ -31,7 +31,7 @@ const Home = () => {
                         categoryList.slice(0, 6).map((category, idx) => {
                             const specificCategory = allMedicine.filter(medicine => medicine.category === category);
                             const images = specificCategory.map(medicine => medicine.image);
-                            // console.log(images)
+                            // //console.log(images)
 
                             return <CategoryCart
                                 key={idx}

@@ -7,7 +7,7 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 const InvoiceDesplay = () => {
     const { user } = useAuth()
     // const [myCarts] = useMyCarts();
-    // console.log(myCarts)
+    // //console.log(myCarts)
     const axiosPublic = useAxiosPublic()
 
     const { data: userBook } = useQuery({
@@ -33,9 +33,9 @@ const InvoiceDesplay = () => {
     const totalPrice = myProducts?.reduce((sum, items) => sum + items.price, 0);
     const date = new Date().toLocaleDateString()
 
-    // console.log(userBook)
-    // console.log(products)
-    // console.log(myProducts)
+    // //console.log(userBook)
+    // //console.log(products)
+    // //console.log(myProducts)
 
 
 

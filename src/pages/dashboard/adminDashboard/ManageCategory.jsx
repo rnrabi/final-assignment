@@ -9,7 +9,6 @@ import { Helmet } from "react-helmet-async";
 
 const ManageCategory = () => {
     const [allMedicine, refetch] = useAllMedicine()
-    console.log(allMedicine)
     const axiosSecure = useAxiosSecure()
 
     const handleDelete = async (deleteId, image, medicine) => {
@@ -25,8 +24,6 @@ const ManageCategory = () => {
             if (result.isConfirmed) {
 
                 const { data } = await axiosSecure.delete(`/allMedicine/${deleteId}`)
-                console.log(data)
-
                 const { data: bannerImageDelete } = await axiosSecure.delete(`/banner?image=${image}`)
                 console.log(bannerImageDelete)
 

@@ -16,7 +16,7 @@ const UserPaymentHistory = () => {
             return data;
         }
     })
-    console.log(userDetails)
+    //console.log(userDetails)
     const inTotal = userDetails?.reduce((sum, items) => sum + parseFloat(items.totalPrice), 0)
 
 

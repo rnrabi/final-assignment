@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const ShopDetails = () => {
     const singleMedicine = useLoaderData()
-    console.log(singleMedicine)
+    //console.log(singleMedicine)
     return (
         <div>
             <h2>This is shop details page</h2>

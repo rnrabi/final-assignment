@@ -12,7 +12,7 @@ const ManageMedicine = () => {
     const axiosSecure = useAxiosSecure()
     const { user } = useAuth()
     const [sellerMedi, refetch] = useAllMedicineEmail()
-    console.log(sellerMedi)
+    //console.log(sellerMedi)
 
     const {
         register,
@@ -21,7 +21,7 @@ const ManageMedicine = () => {
     } = useForm()
 
     const onSubmit = async (data) => {
-        console.log(data)
+        //console.log(data)
 
         const category = data.category;
         const description = data.description;
@@ -31,7 +31,7 @@ const ManageMedicine = () => {
         formData.append('image', file);
         const res = await axios.post(`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_imagebb_Api_key}`, formData)
 
-        // console.log(res.data.data.display_url)
+        // //console.log(res.data.data.display_url)
         const image = res.data.data.display_url;
         const manufacturer = data.manufacturer;
         const name = data.name;
@@ -45,12 +45,12 @@ const ManageMedicine = () => {
         }
 
 
-        // console.log(category, description, dosage, manufacturer, name, price, quantity, strength, seller , image, discount)
+        // //console.log(category, description, dosage, manufacturer, name, price, quantity, strength, seller , image, discount)
 
         const addMedicine = { category, description, dosage, manufacturer, name, price, quantity, strength, seller, image, discount }
 
         const { data: addedMedi } = await axiosSecure.post('/allMedicine', addMedicine)
-        // console.log(addedMedi)
+        // //console.log(addedMedi)
         if (addedMedi.insertedId) {
             Swal.fire({
                 position: "top-end",
@@ -66,9 +66,9 @@ const ManageMedicine = () => {
     }
 
     const handleRemove = async (id) => {
-        console.log(id)
+        //console.log(id)
         const { data } = await axiosSecure.delete(`/allMedicine/${id}`)
-        // console.log(data)
+        // //console.log(data)
         if (data.deletedCount > 0) {
             Swal.fire({
                 position: "top-end",

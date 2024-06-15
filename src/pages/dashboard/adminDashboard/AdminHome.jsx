@@ -23,12 +23,12 @@ const AdminHome = () => {
         }
     })
 
-    // console.log(adHome)
-    console.log(allCarts)
+    // //console.log(adHome)
+    // //console.log(allCarts)
     const totalSales = adHome?.reduce((sum, sel) => sum + sel.products?.length, 0) ?? 0;
     const priceInTotal = adHome?.reduce((sum, item) => sum + parseFloat(parseFloat(item.totalPrice).toFixed(2)), 0) ?? 0;
     const pendingTotal = allCarts?.reduce((sum, items) => sum + parseFloat(parseFloat(items.price).toFixed(2)), 0) ?? 0;
-    console.log(pendingTotal)
+    // //console.log(pendingTotal)
 
     return (
         <div>

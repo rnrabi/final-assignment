@@ -12,7 +12,7 @@ import useSlider from '../../../hooks/useSlider';
 
 const Slider = () => {
     const [image] = useSlider()
-    console.log(image)
+    //console.log(image)
 
     const slidesPerView = 1;
     const slidesPerGroup = 1;

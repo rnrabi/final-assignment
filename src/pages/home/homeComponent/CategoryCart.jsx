@@ -5,8 +5,8 @@ import useSpecificCategory from "../../../hooks/useSpecificCategory";
 
 const CategoryCart = ({ category , images}) => {
     const [specificCategory] = useSpecificCategory(category)
-    console.log(specificCategory)
-    console.log(images)
+    // //console.log(specificCategory)
+    // //console.log(images)
     
     return (
         <div>

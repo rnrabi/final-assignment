@@ -1,12 +1,12 @@
 website name : MediGlam
 
-admin username : 
+admin username : RABINDRO NATH BARMAN
 
-admin email : 
+admin email : rabi@sabi.com
 
-password : 
+password : 123456
 
-live site : 
+live site : https://final-assignment-68588.web.app
 
 bullet point : 
 1. Wide Range of Medicines: Mediglam offers a comprehensive selection of prescription and over-the-counter medicines, catering to various health needs.
