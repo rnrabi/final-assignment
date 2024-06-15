@@ -1,4 +1,4 @@
-import { usePDF, Document, Page, Text } from '@react-pdf/renderer';
+import { usePDF, Document, Page } from '@react-pdf/renderer';
 import InvoiceMemo from './InvoiceMemo';
 import InvoiceDesplay from './InvoiceDesplay';
 import { Helmet } from 'react-helmet-async';

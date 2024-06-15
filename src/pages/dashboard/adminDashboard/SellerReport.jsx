@@ -2,6 +2,9 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Helmet } from "react-helmet-async";
+import { FaDownload } from "react-icons/fa6";
+import { Document, Page, usePDF } from "@react-pdf/renderer";
+import SellerPdf from "./SellerPdf";
 
 
 const SellerReport = () => {
@@ -19,6 +22,24 @@ const SellerReport = () => {
 
     console.log(products)
     // console.log(totalPriceProducts)
+
+    const MyDoc = (
+        <Document>
+            <Page>
+                <SellerPdf products={products} totalPriceProducts={totalPriceProducts}></SellerPdf>
+            </Page>
+        </Document>
+    );
+
+
+
+
+
+    const [instance] = usePDF({ document: MyDoc });
+
+    if (instance.loading) return <div>Loading ...</div>;
+
+    if (instance.error) return <div>Something went wrong: {}</div>;
 
 
     return (
@@ -56,6 +77,9 @@ const SellerReport = () => {
                     </tbody>
                     <div className="text-2xl font-bold my-5">Total Price : {totalPriceProducts}</div>
                 </table>
+                <a href={instance.url} download="seller.pdf">
+                    <button className='btn'><FaDownload></FaDownload> Download</button>
+                </a>
             </div>
         </div>
     );
