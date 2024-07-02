@@ -34,4 +34,4 @@ Featur bullet point :
 
  
 <h2>Technology:</h2>
-mongodb , node , express , react , javaScript
+react , javaScript , tailwind
