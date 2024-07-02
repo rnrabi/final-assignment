@@ -31,4 +31,7 @@ Featur bullet point :
 9. Subscription Service: Users can subscribe for regular deliveries of their essential medicines, ensuring they never run out of important medications.
 
 10. Customer Support: Mediglam offers excellent customer support through multiple channels, including live chat, email, and phone, to assist users with any inquiries or issues.
-Technology: mongodb , node , express , react , javaScript
+
+ 
+<h2>Technology:</h2>
+mongodb , node , express , react , javaScript
