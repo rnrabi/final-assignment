@@ -1,3 +1,6 @@
+Project Over view : 
+My project is a medicine shop, where a user can buy any medicine or sell.
+
 website name : MediGlam
 
 admin username : RABINDRO NATH BARMAN
@@ -8,7 +11,7 @@ password : 123456
 
 live site : https://final-assignment-68588.web.app
 
-bullet point : 
+Featur bullet point : 
 1. Wide Range of Medicines: Mediglam offers a comprehensive selection of prescription and over-the-counter medicines, catering to various health needs.
 
 2. Easy Online Purchasing: Users can conveniently buy their required medicines online with a few simple clicks.
@@ -28,3 +31,4 @@ bullet point :
 9. Subscription Service: Users can subscribe for regular deliveries of their essential medicines, ensuring they never run out of important medications.
 
 10. Customer Support: Mediglam offers excellent customer support through multiple channels, including live chat, email, and phone, to assist users with any inquiries or issues.
+Technology: mongodb , node , express , react , javaScript
